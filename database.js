@@ -92,16 +92,16 @@ const diseaseDatabase = {
             treatment: [
                 {
                     name: "Antibiotics (Early Treatment Critical)",
-            homemedies: [
-                { remedy: "Turmeric poultice", instructions: "Mix turmeric with mustard oil and apply to affected leg 2-3 times daily" },
-                { remedy: "Hot compress", instructions: "Apply hot water compresses to reduce muscle stiffness for 15 minutes, 3-4 times daily" },
-                { remedy: "Rest and support", instructions: "Isolate animal, provide soft bedding and reduce movement to prevent worsening" }
-            ],
                     medicines: [
                         { name: "Penicillin G", dosage: "20,000-40,000 units/kg BID" },
                         { name: "Oxytetracycline", dosage: "20 mg/kg BID-TID" }
                     ]
                 }
+            ],
+            homemedies: [
+                { remedy: "Turmeric poultice", instructions: "Mix turmeric with mustard oil and apply to affected leg 2-3 times daily" },
+                { remedy: "Hot compress", instructions: "Apply hot water compresses to reduce muscle stiffness for 15 minutes, 3-4 times daily" },
+                { remedy: "Rest and support", instructions: "Isolate animal, provide soft bedding and reduce movement to prevent worsening" }
             ],
             description: "Acute, often fatal disease caused by Clostridium chauvoei.",
             prevention: "Vaccination with blackleg vaccine, proper wound care"
@@ -200,16 +200,16 @@ const diseaseDatabase = {
                 },
                 {
                     name: "Supportive Care",
+                    medicines: [
+                        { name: "Electrolyte solution", dosage: "Provide in water ad libitum" }
+                    ]
+                }
+            ],
             homemedies: [
                 { remedy: "Probiotics with rice bran", instructions: "Mix rice bran with fermented feed to restore gut bacteria, provide twice daily" },
                 { remedy: "Ginger-garlic feed additive", instructions: "Add minced ginger and garlic to feed daily for antibacterial properties" },
                 { remedy: "Coconut water and salt solution", instructions: "Provide electrolyte-rich fluids: water, salt (1 tsp/liter) and some sugar" },
                 { remedy: "Soft bland diet", instructions: "Feed cooked rice, boiled eggs, and soft vegetables until recovery" }
-            ],
-                    medicines: [
-                        { name: "Electrolyte solution", dosage: "Provide in water ad libitum" }
-                    ]
-                }
             ],
             description: "Infectious diarrheal disease caused by Brachyspira hyodysenteriae.",
             prevention: "Biosecurity, sanitation, vaccination"
@@ -224,6 +224,12 @@ const diseaseDatabase = {
             treatment: [
                 {
                     name: "Supportive Care Only",
+                    medicines: [
+                        { name: "Vitamin A and E supplementation", dosage: "As per product label" },
+                        { name: "Electrolytes", dosage: "In drinking water" }
+                    ]
+                }
+            ],
             homemedies: [
                 { remedy: "Vitamin-rich feed", instructions: "Provide greens like spinach, kale, and carrot tops for vitamin A and E content" },
                 { remedy: "Garlic in water", instructions: "Add minced garlic to drinking water 3 times a week for immune support" },
@@ -259,13 +265,7 @@ const diseaseDatabase = {
                 { remedy: "Turmeric powder", instructions: "Mix 1 tsp turmeric in feed daily for anti-inflammatory and antiparasitic effects" },
                 { remedy: "Apple cider vinegar", instructions: "Add 1 tbsp apple cider vinegar per liter of drinking water, 3 times per week" },
                 { remedy: "Diatomaceous earth", instructions: "Mix food-grade diatomaceous earth in bedding and feed to control parasites naturally" },
-                { remedy: "Clean dry bedding", instructions: "Change bedding daily to reduce oocyst contamination and moisture" },
-                {
-                    name: "Supportive Care",
-                    medicines: [
-                        { name: "Vitamin K", dosage: "To prevent hemorrhage" }
-                    ]
-                }
+                { remedy: "Clean dry bedding", instructions: "Change bedding daily to reduce oocyst contamination and moisture" }
             ],
             description: "Parasitic intestinal disease caused by Eimeria species.",
             prevention: "Coccidiostats in feed, good sanitation, moisture control"
