@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnosis - Animal Diagnosis & Treatment System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Farmer Login</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p class="toggle-signup">Don't have an account? <a href="#signup">Sign up here</a></p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>🐾 Animal Diagnosis & Remedies</h1>
+                <p>Quick symptom diagnosis and treatment guidance for livestock</p>
+            </div>
+            <nav>
+                <div class="dropdown">
+                    <button class="dropdown-btn">☰ Menu</button>
+                    <div class="dropdown-content">
+                        <a href="home.html">Home</a>
+                        <a href="diagnosis.html">Diagnosis</a>
+                        <a href="guide.html">Disease Guide</a>
+                    </div>
+                </div>
+                <ul>
+                    <li><button id="loginBtn" class="nav-btn">Login</button></li>
+                    <li><button id="logoutBtn" class="nav-btn hidden">Logout</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Diagnosis Section -->
+        <section class="diagnosis-section">
+            <h2>Search for Disease Diagnosis</h2>
+            <p>Enter the symptoms your animal is experiencing</p>
+            
+            <div class="search-container">
+                <input type="text" id="symptomInput" placeholder="E.g., cough, fever, diarrhea, loss of appetite..." autocomplete="off">
+                <button id="searchButton">Search Symptoms</button>
+            </div>
+
+            <div class="filters">
+                <label>Animal Type:</label>
+                <select id="animalType">
+                    <option value="">All Animals</option>
+                    <option value="cattle">Cattle</option>
+                    <option value="sheep">Sheep</option>
+                    <option value="goat">Goat</option>
+                    <option value="pig">Pig</option>
+                    <option value="poultry">Poultry</option>
+                </select>
+            </div>
+
+            <!-- Photo Upload Section -->
+            <div class="photo-upload-section">
+                <h3>📸 Upload Animal Photo (Optional)</h3>
+                <p>Upload a photo of your animal to help with visual diagnosis</p>
+                <div class="upload-area" id="uploadArea">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="13" r="4"></circle>
+                    </svg>
+                    <p>Click to upload or drag and drop</p>
+                    <p class="upload-hint">PNG, JPG, GIF up to 5MB</p>
+                    <input type="file" id="photoInput" accept="image/*" hidden>
+                </div>
+                <div id="photoPreview" class="photo-preview hidden">
+                    <img id="previewImage" src="" alt="Preview">
+                    <button type="button" id="removePhotoBtn" class="remove-photo-btn">Remove Photo</button>
+                </div>
+            </div>
+
+            <div id="resultsContainer" class="results-container hidden">
+                <div id="resultCard" class="result-card"></div>
+            </div>
+
+            <div id="suggestionsContainer" class="suggestions-container"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Animal Diagnosis & Treatment System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="database.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -14,13 +14,38 @@ const symptomInput = document.getElementById('symptomInput');
 const resultsContainer = document.getElementById('resultsContainer');
 const resultCard = document.getElementById('resultCard');
 const suggestionsContainer = document.getElementById('suggestionsContainer');
-const diseaseGuideDiv = document.getElementById('diseaseGuide');
 const animalTypeSelect = document.getElementById('animalType');
 const uploadArea = document.getElementById('uploadArea');
 const photoInput = document.getElementById('photoInput');
 const photoPreview = document.getElementById('photoPreview');
 const previewImage = document.getElementById('previewImage');
 const removePhotoBtn = document.getElementById('removePhotoBtn');
+
+// Dropdown Menu Functionality
+const dropdownBtn = document.querySelector('.dropdown-btn');
+const dropdown = document.querySelector('.dropdown');
+
+if (dropdownBtn) {
+    dropdownBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking on a link
+    const dropdownLinks = document.querySelectorAll('.dropdown-content a');
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            dropdown.classList.remove('active');
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('active');
+        }
+    });
+}
 
 // Login functionality
 loginBtn.addEventListener('click', () => {
@@ -254,28 +279,8 @@ function displaySuggestions(suggestions) {
     });
 }
 
-// Display disease guide on page load
-function displayDiseaseGuide() {
-    let guideHTML = '';
-    Object.entries(diseaseDatabase).forEach(([animalType, diseases]) => {
-        guideHTML += `<h3 style="color: #2ecc71; margin-top: 30px; text-transform: capitalize;">${animalType} Diseases</h3>`;
-        diseases.forEach(disease => {
-            guideHTML += `
-                <div class="disease-card">
-                    <h3>${disease.name}</h3>
-                    <p><strong>Confidence:</strong> ${(disease.confidence * 100).toFixed(0)}%</p>
-                    <p><strong>Symptoms:</strong> ${disease.symptoms.join(', ')}</p>
-                    <p>${disease.description}</p>
-                </div>
-            `;
-        });
-    });
-    diseaseGuideDiv.innerHTML = guideHTML;
-}
-
 // Initialize on page load
 window.addEventListener('DOMContentLoaded', () => {
-    displayDiseaseGuide();
     updateUI();
     setupPhotoUpload();
 });

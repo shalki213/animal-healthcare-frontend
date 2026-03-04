@@ -56,12 +56,80 @@ header .container {
     opacity: 0.9;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 nav ul {
     list-style: none;
     display: flex;
     gap: 30px;
     align-items: center;
     flex-wrap: wrap;
+}
+
+/* Dropdown Menu Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+.dropdown-btn:hover {
+    background-color: white;
+    color: var(--primary-color);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: var(--border-radius);
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: var(--text-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #f0f0f0;
+    color: var(--primary-color);
+}
+
+.dropdown-content a:first-child {
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.dropdown-content a:last-child {
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.dropdown.active .dropdown-content {
+    display: block;
 }
 
 nav a, .nav-btn {
@@ -537,4 +605,97 @@ footer {
     .result-card {
         padding: 15px;
     }
+}
+
+/* Welcome Page Styles */
+.welcome-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.feature-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.feature-card p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.btn-link {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn-link:hover {
+    background-color: #27ae60;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--dark-bg);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 60px;
+}
+
+/* Disease Details in Guide */
+.disease-details {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #ecf0f1;
+}
+
+/* Guide Filter Styles */
+.guide-filter {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+}
+
+.guide-filter label {
+    font-weight: 600;
+    margin-right: 15px;
+    color: var(--text-color);
+}
+
+.guide-filter select {
+    padding: 10px 15px;
+    border: 2px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    cursor: pointer;
+    background-color: white;
+    color: var(--text-color);
+}
+
+.guide-filter select:hover,
+.guide-filter select:focus {
+    border-color: var(--primary-color);
+    outline: none;
 }

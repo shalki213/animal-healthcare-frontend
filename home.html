@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Animal Diagnosis & Treatment System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Farmer Login</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p class="toggle-signup">Don't have an account? <a href="#signup">Sign up here</a></p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>🐾 Animal Diagnosis & Remedies</h1>
+                <p>Quick symptom diagnosis and treatment guidance for livestock</p>
+            </div>
+            <nav>
+                <div class="dropdown">
+                    <button class="dropdown-btn">☰ Menu</button>
+                    <div class="dropdown-content">
+                        <a href="home.html">Home</a>
+                        <a href="diagnosis.html">Diagnosis</a>
+                        <a href="guide.html">Disease Guide</a>
+                    </div>
+                </div>
+                <ul>
+                    <li><button id="loginBtn" class="nav-btn">Login</button></li>
+                    <li><button id="logoutBtn" class="nav-btn hidden">Logout</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Welcome Section -->
+        <section class="welcome">
+            <h2>Welcome to Animal Health Diagnosis</h2>
+            <p>Quickly identify animal diseases and get treatment recommendations</p>
+            
+            <div class="welcome-content">
+                <div class="feature-card">
+                    <h3>🔍 Quick Diagnosis</h3>
+                    <p>Enter your animal's symptoms to get instant disease diagnosis and recommendations.</p>
+                    <a href="diagnosis.html" class="btn-link">Start Diagnosis</a>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📚 Disease Reference Guide</h3>
+                    <p>Explore comprehensive information about common livestock diseases, symptoms, and treatments.</p>
+                    <a href="guide.html" class="btn-link">View Guide</a>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📸 Photo Analysis</h3>
+                    <p>Upload photos of your animal for visual diagnosis support to aid in identification.</p>
+                    <a href="diagnosis.html" class="btn-link">Upload Photo</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Animal Diagnosis & Treatment System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
