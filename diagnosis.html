@@ -134,9 +134,22 @@
                 <div id="photoPreview" class="photo-preview hidden">
                     <img id="previewImage" src="" alt="Photo preview of your animal">
                     <div class="preview-actions">
-                        <button type="button" id="removePhotoBtn" class="remove-photo-btn">🗑️ Remove Photo</button>
-                        <span class="preview-label">✅ Photo ready for analysis</span>
+                        <button type="button" id="analyzePhotoBtn" class="analyze-photo-btn">
+                            🔬 Analyze Photo with AI
+                        </button>
+                        <button type="button" id="removePhotoBtn" class="remove-photo-btn">🗑️ Remove</button>
                     </div>
+                    <span class="preview-label">✅ Photo ready — tap Analyze to scan</span>
+                </div>
+
+                <!-- AI Scan Results (appears after analysis) -->
+                <div id="aiScanResults" class="ai-scan-results hidden">
+                    <div id="scanProgress" class="scan-progress hidden">
+                        <div class="scan-spinner"></div>
+                        <p class="scan-text">🔬 AI is analyzing your photo...</p>
+                        <p class="scan-subtext">This may take a few seconds</p>
+                    </div>
+                    <div id="scanResultContent"></div>
                 </div>
 
                 <!-- Photo Tips for Farmers -->

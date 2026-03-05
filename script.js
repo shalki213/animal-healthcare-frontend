@@ -564,6 +564,119 @@ function setupPhotoUpload() {
             } else if (uploadTabBtn && uploadTabBtn.classList.contains('active')) {
                 if (uploadTab) uploadTab.classList.remove('hidden');
             }
+
+            // Also clear any AI scan results
+            const aiScanResults = document.getElementById('aiScanResults');
+            if (aiScanResults) aiScanResults.classList.add('hidden');
+        });
+    }
+
+    // --- AI Analyze Photo Button ---
+    const analyzePhotoBtn = document.getElementById('analyzePhotoBtn');
+    if (analyzePhotoBtn) {
+        analyzePhotoBtn.addEventListener('click', async () => {
+            if (!uploadedPhotoFile) {
+                showToast('No photo to analyze', 'error');
+                return;
+            }
+
+            if (!isLoggedIn) {
+                showToast('Please login to use AI photo analysis', 'error');
+                return;
+            }
+
+            const aiScanResults = document.getElementById('aiScanResults');
+            const scanProgress = document.getElementById('scanProgress');
+            const scanResultContent = document.getElementById('scanResultContent');
+
+            // Show scanning animation
+            aiScanResults.classList.remove('hidden');
+            scanProgress.classList.remove('hidden');
+            scanResultContent.innerHTML = '';
+            analyzePhotoBtn.disabled = true;
+            analyzePhotoBtn.textContent = '⏳ Scanning...';
+
+            try {
+                const selectedAnimal = animalTypeSelect ? animalTypeSelect.value : '';
+                const data = await DiagnosisService.submit(
+                    'photo analysis visual inspection',
+                    selectedAnimal,
+                    uploadedPhotoFile
+                );
+
+                // Hide progress
+                scanProgress.classList.add('hidden');
+
+                // Display AI results
+                const results = data.results || [];
+                if (results.length === 0) {
+                    scanResultContent.innerHTML = `
+                        <div class="scan-result-card">
+                            <h4>🤔 No Match Found</h4>
+                            <p>The AI could not confidently identify a disease from this photo. Try:</p>
+                            <ul>
+                                <li>Taking a clearer photo with better lighting</li>
+                                <li>Focusing on the affected area</li>
+                                <li>Also entering symptoms manually above</li>
+                            </ul>
+                        </div>
+                    `;
+                } else {
+                    let html = '<h4 class="scan-results-title">🔬 AI Scan Results</h4>';
+                    results.forEach((result, index) => {
+                        const isAiMatch = result.aiMatch || result.matchedViaAI;
+                        const confidenceColor = result.confidence >= 70 ? '#2ecc71' : result.confidence >= 40 ? '#f39c12' : '#e74c3c';
+
+                        html += `
+                            <div class="scan-result-card ${index === 0 ? 'top-result' : ''}">
+                                ${index === 0 ? '<span class="top-badge">🏆 Best Match</span>' : ''}
+                                ${isAiMatch ? '<span class="ai-badge">🤖 AI Vision Match</span>' : ''}
+                                <h4>${result.disease || result.name}</h4>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill" style="width: ${result.confidence}%; background: ${confidenceColor}"></div>
+                                    <span class="confidence-text">${result.confidence}% confidence</span>
+                                </div>
+                                ${result.aiAnalysis ? `<p class="ai-analysis"><strong>AI Notes:</strong> ${result.aiAnalysis}</p>` : ''}
+                                <p class="scan-symptoms"><strong>Key Symptoms:</strong> ${(result.symptoms || result.matchedSymptoms || []).join(', ')}</p>
+                                ${result.description ? `<p class="scan-description">${result.description}</p>` : ''}
+                                ${(result.treatment && result.treatment.length > 0) ? `
+                                    <div class="scan-treatment">
+                                        <h5>💊 Recommended Treatment</h5>
+                                        ${result.treatment.map(t => `
+                                            <div class="treatment-item">
+                                                <strong>${t.name || t.type}</strong>
+                                                ${t.medicines ? t.medicines.map(m => `<p>• ${m.name} — ${m.dosage}</p>`).join('') : ''}
+                                            </div>
+                                        `).join('')}
+                                    </div>
+                                ` : ''}
+                                ${(result.homeRemedies && result.homeRemedies.length > 0) ? `
+                                    <div class="scan-remedies">
+                                        <h5>🌿 Home Remedies</h5>
+                                        <ul>${result.homeRemedies.map(r => `<li>${typeof r === 'string' ? r : r.remedy || r.name}</li>`).join('')}</ul>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `;
+                    });
+                    scanResultContent.innerHTML = html;
+                }
+
+                showToast('✅ Photo analysis complete!', 'success');
+            } catch (error) {
+                scanProgress.classList.add('hidden');
+                scanResultContent.innerHTML = `
+                    <div class="scan-result-card scan-error">
+                        <h4>❌ Analysis Failed</h4>
+                        <p>${error.message}</p>
+                        <p>Try entering symptoms manually above instead.</p>
+                    </div>
+                `;
+                showToast(error.message, 'error');
+            } finally {
+                analyzePhotoBtn.disabled = false;
+                analyzePhotoBtn.textContent = '🔬 Analyze Photo with AI';
+            }
         });
     }
 }
