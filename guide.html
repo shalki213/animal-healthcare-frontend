@@ -27,41 +27,48 @@
     <header>
         <div class="container">
             <div class="logo">
-                <h1>🐾 Animal Diagnosis & Remedies</h1>
-                <p>Quick symptom diagnosis and treatment guidance for livestock</p>
+                <h1>🐾 <span data-i18n="guide_logo">Animal Diagnosis & Remedies</span></h1>
+                <p data-i18n="guide_logo_sub">Quick symptom diagnosis and treatment guidance for livestock</p>
             </div>
             <nav>
                 <div class="dropdown">
-                    <button class="dropdown-btn">☰ Menu</button>
+                    <button class="dropdown-btn" data-i18n="btn_menu">☰ Menu</button>
                     <div class="dropdown-content">
-                        <a href="home.html">Home</a>
-                        <a href="diagnosis.html">Diagnosis</a>
-                        <a href="guide.html">Disease Guide</a>
+                        <a href="home.html">🏠 <span data-i18n="nav_home">Home</span></a>
+                        <a href="diagnosis.html">🔍 <span data-i18n="nav_diagnosis">Diagnosis</span></a>
+                        <a href="guide.html">📚 <span data-i18n="nav_guide">Disease Guide</span></a>
                     </div>
                 </div>
                 <ul>
-                    <li><button id="loginBtn" class="nav-btn">Login</button></li>
-                    <li><button id="logoutBtn" class="nav-btn hidden">Logout</button></li>
+                    <li><button id="loginBtn" class="nav-btn" data-i18n="btn_nav_login">Login</button></li>
+                    <li><button id="logoutBtn" class="nav-btn hidden"><span
+                                data-i18n="btn_nav_logout">Logout</span></button></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="container">
+    <main class="container" style="padding-top: 20px;">
+        <!-- Language Toggle -->
+        <div class="lang-toggle" style="margin-bottom: 20px;">
+            <button class="lang-btn active" data-lang="en" id="langEn">🇬🇧 English</button>
+            <button class="lang-btn" data-lang="sw" id="langSw">🇰🇪 Kiswahili</button>
+        </div>
+
         <!-- Disease Guide Section -->
         <section class="guide-section">
-            <h2>Disease Reference Guide</h2>
-            <p>Comprehensive information about common livestock diseases</p>
+            <h2 data-i18n="guide_title">Disease Reference Guide</h2>
+            <p data-i18n="guide_subtitle">Comprehensive information about common livestock diseases</p>
 
             <div class="guide-filter">
-                <label>Filter by Animal Type:</label>
+                <label data-i18n="guide_filter_label">Filter by Animal Type:</label>
                 <select id="guideAnimalFilter">
-                    <option value="">All Animals</option>
-                    <option value="cattle">Cattle</option>
-                    <option value="sheep">Sheep</option>
-                    <option value="goat">Goat</option>
-                    <option value="pig">Pig</option>
-                    <option value="poultry">Poultry</option>
+                    <option value="" data-i18n="all_animals">All Animals</option>
+                    <option value="cattle" data-i18n="ans_cattle">Cattle</option>
+                    <option value="sheep" data-i18n="ans_sheep">Sheep</option>
+                    <option value="goat" data-i18n="ans_goats">Goat</option>
+                    <option value="pig" data-i18n="ans_pigs">Pig</option>
+                    <option value="poultry" data-i18n="ans_poultry">Poultry</option>
                 </select>
             </div>
 
@@ -69,6 +76,31 @@
         </section>
     </main>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>🐾 AgriVet Diagnosis</h3>
+                    <p data-i18n="footer_desc_guide">Empowering Farmers through Early Detection</p>
+                </div>
+                <div class="footer-links">
+                    <a href="home.html" data-i18n="nav_home">Home</a>
+                    <a href="diagnosis.html" data-i18n="nav_diagnosis">Diagnosis</a>
+                    <a href="guide.html" data-i18n="nav_guide">Disease Guide</a>
+                </div>
+            </div>
+            <div class="footer-disclaimer">
+                <p>⚠️ <strong data-i18n="footer_disc_strong">Disclaimer:</strong> <span
+                        data-i18n="footer_disc_text_short">This tool is a diagnostic aid only. Always consult a licensed
+                        veterinarian for proper diagnosis and treatment.</span></p>
+            </div>
+            <p class="footer-copyright" data-i18n="footer_copy">© 2026 AgriVet Diagnosis System. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/shader-background.js"></script>
     <script src="js/api.js"></script>
     <script src="guide-script.js"></script>
     <script src="script.js"></script>

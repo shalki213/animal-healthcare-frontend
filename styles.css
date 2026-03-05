@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -16,10 +18,11 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--light-bg);
-    color: var(--text-color);
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0d1117;
+    color: #e6edf3;
     line-height: 1.6;
+    min-height: 100vh;
 }
 
 .container {
@@ -30,13 +33,16 @@ body {
 
 /* Header Styles */
 header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: rgba(46, 204, 113, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     color: white;
     padding: 20px 0;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 header .container {
@@ -132,7 +138,8 @@ nav ul {
     display: block;
 }
 
-nav a, .nav-btn {
+nav a,
+.nav-btn {
     color: white;
     text-decoration: none;
     font-weight: 500;
@@ -174,13 +181,16 @@ nav a:hover {
 }
 
 .modal-content {
-    background-color: white;
+    background: rgba(30, 40, 55, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     margin: 10% auto;
     padding: 30px;
     border-radius: var(--border-radius);
     width: 90%;
     max-width: 400px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .close {
@@ -204,9 +214,11 @@ nav a:hover {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--border-radius);
     font-size: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #e6edf3;
 }
 
 .modal-content button {
@@ -242,21 +254,24 @@ main {
 }
 
 section {
-    background: white;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: 30px;
     margin: 20px 0;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 section h2 {
-    color: var(--primary-color);
+    color: #2ecc71;
     margin-bottom: 15px;
     font-size: 24px;
 }
 
 section p {
-    color: #666;
+    color: #8b949e;
     margin-bottom: 20px;
 }
 
@@ -272,10 +287,12 @@ section p {
     flex: 1;
     min-width: 250px;
     padding: 12px 15px;
-    border: 2px solid #ddd;
+    border: 2px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--border-radius);
     font-size: 16px;
     transition: border-color 0.3s;
+    background: rgba(255, 255, 255, 0.08);
+    color: #e6edf3;
 }
 
 #symptomInput:focus {
@@ -337,13 +354,13 @@ section p {
 }
 
 .upload-area {
-    border: 2px dashed var(--secondary-color);
+    border: 2px dashed rgba(52, 152, 219, 0.5);
     border-radius: var(--border-radius);
     padding: 40px;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s;
-    background-color: #f8f9fa;
+    background-color: rgba(255, 255, 255, 0.04);
 }
 
 .upload-area:hover {
@@ -404,11 +421,15 @@ section p {
 }
 
 .result-card {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(46, 204, 113, 0.08));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 25px;
     border-radius: var(--border-radius);
     border-left: 5px solid var(--primary-color);
     margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 5px solid var(--primary-color);
 }
 
 .result-card h3 {
@@ -427,7 +448,8 @@ section p {
     margin-bottom: 10px;
 }
 
-.disease-info ul, .disease-info ol {
+.disease-info ul,
+.disease-info ol {
     margin-left: 20px;
     color: #555;
 }
@@ -461,7 +483,7 @@ section p {
 .medicine-item {
     margin: 10px 0;
     padding: 10px;
-    background-color: #f9f9f9;
+    background-color: rgba(255, 255, 255, 0.05);
     border-radius: 5px;
 }
 
@@ -519,11 +541,13 @@ section p {
 }
 
 .disease-card {
-    background: white;
-    border: 1px solid #ddd;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 20px;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -616,12 +640,15 @@ footer {
 }
 
 .feature-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: 30px;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .feature-card:hover {
@@ -636,7 +663,7 @@ footer {
 }
 
 .feature-card p {
-    color: #666;
+    color: #8b949e;
     margin-bottom: 20px;
 }
 
@@ -744,7 +771,1490 @@ button:disabled {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--border-radius);
     font-size: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #e6edf3;
+}
+
+/* ================================================================
+   FARMER-FRIENDLY UI — Hero, Steps, Animals, Footer, Animations
+   ================================================================ */
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin: 0;
+    border-radius: 0;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 50, 0, 0.5));
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 800px;
+}
+
+.hero-content h2 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.9) !important;
+    margin-bottom: 30px !important;
+    line-height: 1.6;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: #2ecc71;
+    text-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
+}
+
+.stat-label {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    padding: 18px 40px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(46, 204, 113, 0.4);
+    min-height: 56px;
+}
+
+.hero-cta:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(46, 204, 113, 0.5);
+}
+
+/* How It Works Section */
+.how-it-works {
+    text-align: center;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.step-card {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 35px 25px;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(46, 204, 113, 0.15);
+    border-color: rgba(46, 204, 113, 0.3);
+}
+
+.step-number {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 2px 10px rgba(46, 204, 113, 0.4);
+}
+
+.step-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.step-card h3 {
+    color: #2ecc71;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.step-card p {
+    color: #8b949e;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Feature Icon */
+.feature-icon {
+    font-size: 52px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.feature-card h3 {
+    color: #2ecc71;
+    margin-bottom: 12px;
+    font-size: 22px;
+}
+
+/* Enhanced Buttons — bigger touch targets */
+.btn-link {
+    display: inline-block;
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    min-height: 48px;
+    box-shadow: 0 2px 12px rgba(46, 204, 113, 0.3);
+}
+
+.btn-link:hover {
+    background: linear-gradient(135deg, #27ae60, #219a52);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+}
+
+/* Animals Section */
+.animals-section {
+    text-align: center;
+}
+
+.animals-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.animal-badge {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #e6edf3;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    cursor: default;
+    min-width: 120px;
+}
+
+.animal-badge:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: rgba(46, 204, 113, 0.4);
+    box-shadow: 0 8px 25px rgba(46, 204, 113, 0.15);
+    background: rgba(46, 204, 113, 0.08);
+}
+
+.animal-emoji {
+    font-size: 40px;
+    display: block;
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: #8b949e;
+    padding: 40px 20px 20px;
+    margin-top: 60px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.footer-brand h3 {
+    color: #2ecc71;
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.footer-brand p {
+    color: #8b949e;
+    font-size: 14px;
+    max-width: 400px;
+    line-height: 1.5;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #8b949e;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #2ecc71;
+}
+
+.footer-disclaimer {
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid rgba(231, 76, 60, 0.2);
+    border-radius: var(--border-radius);
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+
+.footer-disclaimer p {
+    color: #e6a07c;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.footer-copyright {
+    text-align: center;
+    font-size: 13px;
+    color: rgba(139, 148, 158, 0.6);
+}
+
+/* Enhanced Feature Cards hover */
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(46, 204, 113, 0.15);
+    border-color: rgba(46, 204, 113, 0.3);
+}
+
+/* Enhanced Disease Cards hover */
+.disease-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(46, 204, 113, 0.15);
+    border-color: rgba(46, 204, 113, 0.3);
+}
+
+/* Enhanced Search Button */
+#searchButton {
+    padding: 14px 36px;
+    font-size: 17px;
+    min-height: 48px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    box-shadow: 0 2px 12px rgba(46, 204, 113, 0.3);
+    transition: all 0.3s ease;
+}
+
+#searchButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+    background: linear-gradient(135deg, #27ae60, #219a52);
+}
+
+/* Guide Filter dark mode */
+.guide-filter {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.guide-filter label {
+    color: #e6edf3;
+}
+
+.guide-filter select {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e6edf3;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Treatment box dark mode */
+.treatment-box {
+    background-color: rgba(46, 204, 113, 0.08);
+    border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.treatment-box h5 {
+    color: #2ecc71;
+}
+
+.medicine-list {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-left-color: rgba(52, 152, 219, 0.5);
+}
+
+.medicine-name {
+    color: #5dade2;
+}
+
+.medicine-dosage {
+    color: #8b949e;
+}
+
+/* Confidence / warning boxes dark mode */
+.confidence {
+    background-color: rgba(255, 193, 7, 0.1);
+    border-left-color: #f39c12;
+    color: #f5d98e;
+}
+
+.warning {
+    background-color: rgba(231, 76, 60, 0.1);
+    border-left-color: #e74c3c;
+    color: #f1a9a0;
+}
+
+/* Suggestion items dark mode */
+.suggestion-item {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: #e6edf3;
+}
+
+.suggestion-item:hover {
+    background-color: rgba(46, 204, 113, 0.08);
+    border-left-color: #2ecc71;
+}
+
+/* Disease card text colors */
+.disease-card h3 {
+    color: #2ecc71;
+}
+
+.disease-card p {
+    color: #8b949e;
+}
+
+/* Disease info text */
+.disease-info ul,
+.disease-info ol {
+    color: #b0bec5;
+}
+
+.result-card h3 {
+    color: #2ecc71;
+}
+
+/* Disease info heading */
+.disease-info h4 {
+    color: #5dade2;
+}
+
+/* Upload area text */
+.upload-area p {
+    color: #8b949e;
+}
+
+.upload-area svg {
+    color: #5dade2;
+}
+
+/* Photo upload section text */
+.photo-upload-section h3 {
+    color: #2ecc71;
+}
+
+.photo-upload-section p {
+    color: #8b949e;
+}
+
+/* Input placeholders */
+#symptomInput::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.modal-content input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+/* Home remedies box dark mode */
+.treatment-box[style*="fff9e6"] {
+    background-color: rgba(243, 156, 18, 0.08) !important;
+    border-left-color: #f39c12 !important;
+}
+
+/* Filters select dark mode */
+.filters select {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e6edf3;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.filters label {
+    color: #e6edf3;
+}
+
+/* Mobile Responsive — Hero */
+@media (max-width: 768px) {
+    .hero-content h2 {
+        font-size: 32px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .hero-stats {
+        gap: 20px;
+    }
+
+    .stat-number {
+        font-size: 28px;
+    }
+
+    .hero-cta {
+        padding: 16px 30px;
+        font-size: 17px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+
+    .animals-grid {
+        gap: 12px;
+    }
+
+    .animal-badge {
+        padding: 14px 18px;
+        min-width: 90px;
+        font-size: 14px;
+    }
+
+    .animal-emoji {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h2 {
+        font-size: 26px;
+    }
+
+    .hero-section {
+        min-height: 400px;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ================================================================
+   CAMERA + TABS UI
+   ================================================================ */
+
+/* Photo Tab Buttons */
+.photo-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.photo-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 16px 20px;
+    background: transparent;
+    border: none;
+    color: #8b949e;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 48px;
+}
+
+.photo-tab:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #e6edf3;
+}
+
+.photo-tab.active {
+    background: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+    box-shadow: inset 0 -3px 0 #2ecc71;
+}
+
+.tab-icon {
+    font-size: 24px;
+}
+
+.tab-label {
+    font-size: 13px;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Camera Container */
+.camera-container {
+    position: relative;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#cameraFeed {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 16px;
+    display: none;
+}
+
+.camera-overlay {
+    padding: 40px;
+    text-align: center;
+}
+
+.camera-overlay.hidden {
+    display: none;
+}
+
+.camera-overlay p {
+    color: #8b949e;
+    font-size: 16px;
+}
+
+/* Camera Control Buttons */
+.camera-controls {
+    display: flex;
+    gap: 12px;
+    padding: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.camera-btn {
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.camera-btn.hidden {
+    display: none !important;
+}
+
+.camera-start-btn {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+    box-shadow: 0 2px 12px rgba(46, 204, 113, 0.3);
+}
+
+.camera-start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+}
+
+.camera-capture-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    box-shadow: 0 2px 12px rgba(231, 76, 60, 0.3);
+    font-size: 17px;
+    padding: 14px 30px;
+}
+
+.camera-capture-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+}
+
+.camera-switch-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e6edf3;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.camera-switch-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.camera-stop-btn {
+    background: rgba(255, 255, 255, 0.08);
+    color: #8b949e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.camera-stop-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #e6edf3;
+}
+
+/* Enhanced Photo Preview */
+.preview-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.preview-label {
+    color: #2ecc71;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Photo Preview inside container */
+.photo-preview {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    border-radius: 16px;
+    padding: 15px;
+    text-align: center;
+}
+
+.photo-preview img {
+    max-width: 100%;
+    max-height: 350px;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+/* Generic hidden class */
+.photo-tabs.hidden,
+.tab-content.hidden {
+    display: none !important;
+}
+
+/* Photo Tips */
+.photo-tips {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin-top: 20px;
+}
+
+.photo-tips h4 {
+    color: #f39c12;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.photo-tips ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.photo-tips li {
+    color: #8b949e;
+    padding: 6px 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.photo-tips li strong {
+    color: #e6edf3;
+}
+
+/* Mobile Camera Adjustments */
+@media (max-width: 768px) {
+    .photo-tabs {
+        border-radius: 10px;
+    }
+
+    .photo-tab {
+        padding: 12px 15px;
+    }
+
+    .tab-icon {
+        font-size: 20px;
+    }
+
+    .camera-controls {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .camera-btn {
+        padding: 10px 18px;
+        font-size: 13px;
+    }
+
+    .camera-capture-btn {
+        padding: 12px 24px;
+        font-size: 15px;
+    }
+}
+
+/* ================================================================
+   AI PHOTO SCAN — Button, Animation, Results
+   ================================================================ */
+
+/* Analyze Button */
+.analyze-photo-btn {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(52, 152, 219, 0.4);
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.analyze-photo-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 30px rgba(52, 152, 219, 0.5);
+    background: linear-gradient(135deg, #2980b9, #2573a7);
+}
+
+.analyze-photo-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* AI Scan Results Container */
+.ai-scan-results {
+    margin-top: 20px;
+}
+
+.ai-scan-results.hidden {
+    display: none;
+}
+
+/* Scanning Animation */
+.scan-progress {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(52, 152, 219, 0.08);
+    border: 1px solid rgba(52, 152, 219, 0.2);
+    border-radius: 16px;
+}
+
+.scan-progress.hidden {
+    display: none;
+}
+
+.scan-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(52, 152, 219, 0.2);
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.scan-text {
+    color: #5dade2;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.scan-subtext {
+    color: #8b949e;
+    font-size: 14px;
+}
+
+/* Scan Result Cards */
+.scan-results-title {
+    color: #5dade2;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.scan-result-card {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 15px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.scan-result-card.top-result {
+    border-color: rgba(46, 204, 113, 0.3);
+    background: rgba(46, 204, 113, 0.06);
+}
+
+.scan-result-card.scan-error {
+    border-color: rgba(231, 76, 60, 0.3);
+    background: rgba(231, 76, 60, 0.06);
+}
+
+.scan-result-card h4 {
+    color: #2ecc71;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.scan-error h4 {
+    color: #e74c3c;
+}
+
+.top-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.ai-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    margin-left: 6px;
+}
+
+/* Confidence Bar */
+.confidence-bar {
+    position: relative;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.confidence-fill {
+    height: 100%;
+    border-radius: 14px;
+    transition: width 1s ease-out;
+}
+
+.confidence-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* AI Analysis / Symptoms / Description */
+.ai-analysis {
+    color: #5dade2;
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 10px;
+    background: rgba(52, 152, 219, 0.08);
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.scan-symptoms {
+    color: #b0bec5;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.scan-description {
+    color: #8b949e;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Scan Treatment Section */
+.scan-treatment {
+    background: rgba(46, 204, 113, 0.06);
+    border: 1px solid rgba(46, 204, 113, 0.15);
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 12px;
+}
+
+.scan-treatment h5 {
+    color: #2ecc71;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.treatment-item {
+    margin-bottom: 8px;
+    color: #e6edf3;
+    font-size: 14px;
+}
+
+.treatment-item p {
+    color: #8b949e;
+    padding-left: 15px;
+    font-size: 13px;
+}
+
+/* Scan Remedies */
+.scan-remedies {
+    background: rgba(243, 156, 18, 0.06);
+    border: 1px solid rgba(243, 156, 18, 0.15);
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 12px;
+}
+
+.scan-remedies h5 {
+    color: #f39c12;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.scan-remedies ul {
+    list-style: none;
+    padding: 0;
+}
+
+.scan-remedies li {
+    color: #b0bec5;
+    padding: 4px 0;
+    font-size: 13px;
+}
+
+.scan-remedies li::before {
+    content: '🌿 ';
+}
+
+.scan-result-card ul {
+    color: #8b949e;
+    padding-left: 20px;
+}
+
+.scan-result-card li {
+    color: #8b949e;
+    padding: 3px 0;
+    font-size: 14px;
+}
+
+/* ================================================================
+   FARMER UX ENHANCEMENTS — Phase 6
+   ================================================================ */
+
+/* Emergency Banner */
+.emergency-banner {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), rgba(192, 57, 43, 0.25));
+    border: 1px solid rgba(231, 76, 60, 0.4);
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: urgentPulse 2s infinite;
+}
+
+@keyframes urgentPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+    }
+}
+
+.emergency-icon {
+    font-size: 32px;
+}
+
+.emergency-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.emergency-text strong {
+    color: #ff6b6b;
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.emergency-text span {
+    color: #e6edf3;
+    font-size: 14px;
+}
+
+.emergency-btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.emergency-call {
+    background: #e74c3c;
+    color: white;
+}
+
+.emergency-call:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+.emergency-whatsapp {
+    background: #25D366;
+    color: white;
+}
+
+.emergency-whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .emergency-banner {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .emergency-btn {
+        text-align: center;
+    }
+}
+
+/* Language Toggle */
+.lang-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.lang-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #8b949e;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.lang-btn.active {
+    background: rgba(46, 204, 113, 0.15);
+    border-color: rgba(46, 204, 113, 0.4);
+    color: #2ecc71;
+    font-weight: 600;
+}
+
+/* Voice Input Button */
+.search-container {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#symptomInput {
+    flex: 1;
+    padding-right: 50px;
+    /* Make room for mic */
+}
+
+.voice-btn {
+    position: absolute;
+    right: 165px;
+    /* Adjust based on search button width */
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.voice-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.voice-btn.recording {
+    color: #e74c3c;
+    background: rgba(231, 76, 60, 0.15);
+    animation: micPulse 1.5s infinite;
+}
+
+@media (max-width: 600px) {
+    .voice-btn {
+        right: 10px;
+        top: 25px;
+        /* Adjust for stacked layout */
+    }
+}
+
+@keyframes micPulse {
+    0% {
+        transform: translateY(-50%) scale(1);
+        box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4);
+    }
+
+    50% {
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+    }
+
+    100% {
+        transform: translateY(-50%) scale(1);
+        box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+    }
+}
+
+.voice-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #e74c3c;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: -5px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+.voice-status.hidden {
+    display: none;
+}
+
+.voice-pulse {
+    width: 10px;
+    height: 10px;
+    background-color: #e74c3c;
+    border-radius: 50%;
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.2;
+    }
+}
+
+/* Quick Symptom Chips */
+.quick-symptoms {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.quick-symptoms h4 {
+    color: #8b949e;
+    font-size: 14px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.symptom-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.symptom-chip {
+    background: rgba(52, 152, 219, 0.1);
+    border: 1px solid rgba(52, 152, 219, 0.2);
+    color: #e6edf3;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.symptom-chip:hover {
+    background: rgba(52, 152, 219, 0.25);
+    border-color: rgba(52, 152, 219, 0.4);
+    transform: translateY(-2px);
+}
+
+.symptom-chip.selected {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border-color: transparent;
+}
+
+/* Action Buttons (Print/Share) */
+.diagnosis-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.diagnosis-actions.hidden {
+    display: none;
+}
+
+.diagnosis-actions h4 {
+    color: #e6edf3;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+}
+
+.print-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.print-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.share-btn {
+    background: #25D366;
+    color: white;
+}
+
+.share-btn:hover {
+    background: #128C7E;
+}
+
+@media (max-width: 600px) {
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+/* Diagnosis History */
+.history-section {
+    margin-top: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.history-section.hidden {
+    display: none;
+}
+
+.history-section h3 {
+    color: #2ecc71;
+    margin-bottom: 20px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.history-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.history-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(46, 204, 113, 0.3);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.history-date {
+    color: #8b949e;
+    font-size: 13px;
+}
+
+.history-top-match {
+    color: #e6edf3;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.history-symptoms {
+    color: #b0bec5;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
