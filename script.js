@@ -77,7 +77,7 @@ if (loginForm) {
         const originalText = submitBtn.textContent;
 
         // Check if we're in signup mode
-        const isSignup = submitBtn.textContent === 'Create Account';
+        const isSignup = submitBtn.getAttribute('data-i18n') === 'btn_signup';
 
         try {
             submitBtn.disabled = true;
@@ -353,6 +353,12 @@ const translations = {
         'nav_guide': 'Disease Guide',
         'btn_nav_login': 'Login',
         'btn_nav_logout': 'Logout',
+        // Signup Forms
+        'signup_title': 'Create Account',
+        'btn_signup': 'Sign Up',
+        'txt_has_account': 'Already have an account?',
+        'link_login': 'Login here',
+        'ph_email': 'Email Address',
         // Search & Symptoms
         'search_title': '🔍 Search for Disease Diagnosis',
         'search_subtitle': 'Type your animal\'s symptoms below — or tap the common diseases',
@@ -470,6 +476,12 @@ const translations = {
         'nav_guide': 'Mwongozo wa Magonjwa',
         'btn_nav_login': 'Ingia',
         'btn_nav_logout': 'Toka',
+        // Signup Forms
+        'signup_title': 'Fungua Akaunti',
+        'btn_signup': 'Jisajili',
+        'txt_has_account': 'Tayari una akaunti?',
+        'link_login': 'Ingia hapa',
+        'ph_email': 'Barua Pepe',
         // Search & Symptoms
         'search_title': '🔍 Tafuta Ugonjwa',
         'search_subtitle': 'Andika dalili za mnyama wako hapa chini — au gusa magonjwa ya kawaida',
