@@ -1,70 +1,64 @@
-// Disease Guide Script
+// Disease Guide Script — wired to backend API
 const guideAnimalFilter = document.getElementById('guideAnimalFilter');
 const diseaseGuideDiv = document.getElementById('diseaseGuide');
-
-// Dropdown Menu Functionality
-const dropdownBtn = document.querySelector('.dropdown-btn');
-const dropdown = document.querySelector('.dropdown');
-
-if (dropdownBtn) {
-    dropdownBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdown.classList.toggle('active');
-    });
-
-    // Close dropdown when clicking on a link
-    const dropdownLinks = document.querySelectorAll('.dropdown-content a');
-    dropdownLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            dropdown.classList.remove('active');
-        });
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!dropdown.contains(e.target)) {
-            dropdown.classList.remove('active');
-        }
-    });
-}
 
 if (guideAnimalFilter) {
     guideAnimalFilter.addEventListener('change', displayFilteredGuide);
 }
 
-function displayFilteredGuide() {
+async function displayFilteredGuide() {
     const selectedAnimal = guideAnimalFilter.value;
-    let guideHTML = '';
 
-    if (selectedAnimal) {
-        // Display only selected animal's diseases
-        const diseases = diseaseDatabase[selectedAnimal] || [];
-        if (diseases.length === 0) {
-            guideHTML = '<p>No diseases found for this animal type.</p>';
-        } else {
-            guideHTML = `<h3 style="color: #2ecc71; margin-top: 30px; text-transform: capitalize;">
+    // Show loading state
+    diseaseGuideDiv.innerHTML = '<p style="text-align:center; color:#666;">Loading diseases...</p>';
+
+    try {
+        const diseases = await DiseaseService.getAll(selectedAnimal);
+
+        if (!diseases || diseases.length === 0) {
+            diseaseGuideDiv.innerHTML = '<p>No diseases found.</p>';
+            return;
+        }
+
+        let guideHTML = '';
+
+        if (selectedAnimal) {
+            // Single animal type selected
+            guideHTML += `<h3 style="color: #2ecc71; margin-top: 30px; text-transform: capitalize;">
                 ${selectedAnimal} Diseases
             </h3>`;
             diseases.forEach(disease => {
                 guideHTML += createDiseaseCard(disease);
             });
-        }
-    } else {
-        // Display all animals and their diseases
-        Object.entries(diseaseDatabase).forEach(([animalType, diseases]) => {
-            guideHTML += `<h3 style="color: #2ecc71; margin-top: 30px; text-transform: capitalize;">
-                ${animalType} Diseases
-            </h3>`;
+        } else {
+            // Group diseases by animal type
+            const grouped = {};
             diseases.forEach(disease => {
-                guideHTML += createDiseaseCard(disease);
+                const type = disease.animalType;
+                if (!grouped[type]) grouped[type] = [];
+                grouped[type].push(disease);
             });
-        });
-    }
 
-    diseaseGuideDiv.innerHTML = guideHTML;
+            Object.entries(grouped).forEach(([animalType, diseases]) => {
+                guideHTML += `<h3 style="color: #2ecc71; margin-top: 30px; text-transform: capitalize;">
+                    ${animalType} Diseases
+                </h3>`;
+                diseases.forEach(disease => {
+                    guideHTML += createDiseaseCard(disease);
+                });
+            });
+        }
+
+        diseaseGuideDiv.innerHTML = guideHTML;
+    } catch (error) {
+        diseaseGuideDiv.innerHTML = `<p style="color: #e74c3c;">Failed to load diseases: ${error.message}</p>`;
+    }
 }
 
 function createDiseaseCard(disease) {
+    // Normalize field name (API returns homeRemedies, original used homemedies)
+    const remedies = disease.homeRemedies || disease.homemedies || [];
+
     return `
         <div class="disease-card">
             <h4>${disease.name}</h4>
@@ -88,11 +82,11 @@ function createDiseaseCard(disease) {
                     </div>
                 `).join('')}
                 
-                ${disease.homemedies ? `
+                ${remedies.length > 0 ? `
                     <div class="treatment-box" style="background-color: #fff9e6; border-left-color: #f39c12;">
                         <h6 style="color: #f39c12;">Home Remedies</h6>
                         <div class="medicine-list">
-                            ${disease.homemedies.map(remedy => `
+                            ${remedies.map(remedy => `
                                 <div class="medicine-item" style="background-color: #fffbf0;">
                                     <div class="medicine-name" style="color: #d68910;">${remedy.remedy}</div>
                                     <div class="medicine-dosage">${remedy.instructions}</div>
@@ -111,5 +105,4 @@ function createDiseaseCard(disease) {
 // Display guide on page load
 window.addEventListener('DOMContentLoaded', () => {
     displayFilteredGuide();
-    updateUI();
 });

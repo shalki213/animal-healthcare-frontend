@@ -699,3 +699,52 @@ footer {
     border-color: var(--primary-color);
     outline: none;
 }
+
+/* Toast Notifications */
+.toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 14px 24px;
+    border-radius: var(--border-radius);
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    z-index: 9999;
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+    max-width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.toast-notification.show {
+    transform: translateX(0);
+}
+
+.toast-success {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.toast-error {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.toast-info {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+/* Disabled Button State */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Signup email input in modal */
+#signupEmail {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+}
