@@ -30,74 +30,87 @@
         <div class="container">
             <div class="logo">
                 <h1>🐾 AgriVet Diagnosis</h1>
-                <p>Empowering Farmers through Early Detection</p>
+                <p data-i18n="logo_sub">Empowering Farmers through Early Detection</p>
             </div>
             <nav>
                 <div class="dropdown">
-                    <button class="dropdown-btn">☰ Menu</button>
+                    <button class="dropdown-btn" data-i18n="btn_menu">☰ Menu</button>
                     <div class="dropdown-content">
-                        <a href="home.html">🏠 Home</a>
-                        <a href="diagnosis.html">🔍 Diagnosis</a>
-                        <a href="guide.html">📚 Disease Guide</a>
+                        <a href="home.html">🏠 <span data-i18n="nav_home">Home</span></a>
+                        <a href="diagnosis.html">🔍 <span data-i18n="nav_diagnosis">Diagnosis</span></a>
+                        <a href="guide.html">📚 <span data-i18n="nav_guide">Disease Guide</span></a>
                     </div>
                 </div>
                 <ul>
-                    <li><button id="loginBtn" class="nav-btn">Login</button></li>
-                    <li><button id="logoutBtn" class="nav-btn hidden">Logout</button></li>
+                    <li><button id="loginBtn" class="nav-btn" data-i18n="btn_nav_login">Login</button></li>
+                    <li><button id="logoutBtn" class="nav-btn hidden"><span
+                                data-i18n="btn_nav_logout">Logout</span></button></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
+        <!-- Language Toggle -->
+        <div class="container" style="padding-top: 20px;">
+            <div class="lang-toggle">
+                <button class="lang-btn active" data-lang="en" id="langEn">🇬🇧 English</button>
+                <button class="lang-btn" data-lang="sw" id="langSw">🇰🇪 Kiswahili</button>
+            </div>
+        </div>
+
         <!-- Hero Section -->
         <section class="hero-section">
             <div class="hero-overlay"></div>
             <img src="images/hero-farm.png" alt="Healthy livestock grazing on green farmland" class="hero-image">
             <div class="hero-content">
-                <h2>Is Your Animal Sick?</h2>
-                <p class="hero-subtitle">Get an <strong>instant diagnosis</strong> and <strong>first-aid
+                <h2 data-i18n="hero_title">Is Your Animal Sick?</h2>
+                <p class="hero-subtitle" data-i18n="hero_subtitle">Get an <strong>instant diagnosis</strong> and
+                    <strong>first-aid
                         treatment</strong> in seconds — no vet visit needed.</p>
                 <div class="hero-stats">
                     <div class="stat-item">
                         <span class="stat-number">15</span>
-                        <span class="stat-label">Diseases Covered</span>
+                        <span class="stat-label" data-i18n="stat_diseases">Diseases Covered</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">5</span>
-                        <span class="stat-label">Animal Types</span>
+                        <span class="stat-label" data-i18n="stat_animals">Animal Types</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">AI</span>
-                        <span class="stat-label">Photo Analysis</span>
+                        <span class="stat-label" data-i18n="stat_ai">Photo Analysis</span>
                     </div>
                 </div>
-                <a href="diagnosis.html" class="hero-cta">🔍 Diagnose My Animal Now</a>
+                <a href="diagnosis.html" class="hero-cta">🔍 <span data-i18n="hero_btn">Diagnose My Animal
+                        Now</span></a>
             </div>
         </section>
 
         <!-- How It Works -->
         <section class="how-it-works container">
-            <h2>How It Works</h2>
-            <p>Three simple steps to help your livestock</p>
+            <h2 data-i18n="how_title">How It Works</h2>
+            <p data-i18n="how_subtitle">Three simple steps to help your livestock</p>
             <div class="steps-grid">
                 <div class="step-card">
                     <div class="step-number">1</div>
                     <div class="step-icon">🐄</div>
-                    <h3>Select Your Animal</h3>
-                    <p>Choose from cattle, sheep, goats, pigs, or poultry</p>
+                    <h3 data-i18n="step1_title">Select Your Animal</h3>
+                    <p data-i18n="step1_desc">Choose from cattle, sheep, goats, pigs, or poultry</p>
                 </div>
                 <div class="step-card">
                     <div class="step-number">2</div>
                     <div class="step-icon">📝</div>
-                    <h3>Describe Symptoms</h3>
-                    <p>Type what you see — fever, cough, diarrhea, lameness, or upload a photo</p>
+                    <h3 data-i18n="step2_title">Describe Symptoms</h3>
+                    <p data-i18n="step2_desc">Type what you see — fever, cough, diarrhea, lameness, or upload a photo
+                    </p>
                 </div>
                 <div class="step-card">
                     <div class="step-number">3</div>
                     <div class="step-icon">💊</div>
-                    <h3>Get Treatment</h3>
-                    <p>Receive step-by-step treatment plans, medicines, and home remedies instantly</p>
+                    <h3 data-i18n="step3_title">Get Treatment</h3>
+                    <p data-i18n="step3_desc">Receive step-by-step treatment plans, medicines, and home remedies
+                        instantly</p>
                 </div>
             </div>
         </section>
@@ -107,40 +120,45 @@
             <div class="welcome-content">
                 <div class="feature-card">
                     <div class="feature-icon">🔍</div>
-                    <h3>Quick Diagnosis</h3>
-                    <p>Enter your animal's symptoms and get matched to diseases from our database of 15 common livestock
-                        diseases.</p>
-                    <a href="diagnosis.html" class="btn-link">Start Diagnosis →</a>
+                    <h3 data-i18n="feat1_title">Quick Diagnosis</h3>
+                    <p data-i18n="feat1_desc">Enter your animal's symptoms and get matched to diseases from our database
+                        of 15 common livestock diseases.</p>
+                    <a href="diagnosis.html" class="btn-link" data-i18n="feat1_btn">Start Diagnosis →</a>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">📸</div>
-                    <h3>AI Photo Analysis</h3>
-                    <p>Upload a photo of your sick animal and let our AI vision system identify symptoms and suggest a
-                        diagnosis automatically.</p>
-                    <a href="diagnosis.html" class="btn-link">Upload Photo →</a>
+                    <h3 data-i18n="feat2_title">AI Photo Analysis</h3>
+                    <p data-i18n="feat2_desc">Upload a photo of your sick animal and let our AI vision system identify
+                        symptoms and suggest a diagnosis automatically.</p>
+                    <a href="diagnosis.html" class="btn-link" data-i18n="feat2_btn">Upload Photo →</a>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">📚</div>
-                    <h3>Disease Reference</h3>
-                    <p>Browse our comprehensive guide covering treatments, home remedies, dosages, and prevention for
-                        all 15 livestock diseases.</p>
-                    <a href="guide.html" class="btn-link">View Guide →</a>
+                    <h3 data-i18n="feat3_title">Disease Reference</h3>
+                    <p data-i18n="feat3_desc">Browse our comprehensive guide covering treatments, home remedies,
+                        dosages, and prevention for all 15 livestock diseases.</p>
+                    <a href="guide.html" class="btn-link" data-i18n="feat3_btn">View Guide →</a>
                 </div>
             </div>
         </div>
 
         <!-- Animals Covered -->
         <section class="animals-section container">
-            <h2>Animals We Cover</h2>
-            <p>Our database includes diseases for all major livestock categories</p>
+            <h2 data-i18n="animals_title">Animals We Cover</h2>
+            <p data-i18n="animals_subtitle">Our database includes diseases for all major livestock categories</p>
             <div class="animals-grid">
-                <div class="animal-badge"><span class="animal-emoji">🐄</span> Cattle</div>
-                <div class="animal-badge"><span class="animal-emoji">🐑</span> Sheep</div>
-                <div class="animal-badge"><span class="animal-emoji">🐐</span> Goats</div>
-                <div class="animal-badge"><span class="animal-emoji">🐷</span> Pigs</div>
-                <div class="animal-badge"><span class="animal-emoji">🐔</span> Poultry</div>
+                <div class="animal-badge"><span class="animal-emoji">🐄</span> <span
+                        data-i18n="ans_cattle">Cattle</span></div>
+                <div class="animal-badge"><span class="animal-emoji">🐑</span> <span data-i18n="ans_sheep">Sheep</span>
+                </div>
+                <div class="animal-badge"><span class="animal-emoji">🐐</span> <span data-i18n="ans_goats">Goats</span>
+                </div>
+                <div class="animal-badge"><span class="animal-emoji">🐷</span> <span data-i18n="ans_pigs">Pigs</span>
+                </div>
+                <div class="animal-badge"><span class="animal-emoji">🐔</span> <span
+                        data-i18n="ans_poultry">Poultry</span></div>
             </div>
         </section>
     </main>
@@ -151,20 +169,23 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3>🐾 AgriVet Diagnosis</h3>
-                    <p>Empowering Farmers through Early Detection and Accessible Livestock Health Information</p>
+                    <p data-i18n="footer_desc">Empowering Farmers through Early Detection and Accessible Livestock
+                        Health Information</p>
                 </div>
                 <div class="footer-links">
-                    <a href="home.html">Home</a>
-                    <a href="diagnosis.html">Diagnosis</a>
-                    <a href="guide.html">Disease Guide</a>
+                    <a href="home.html" data-i18n="nav_home">Home</a>
+                    <a href="diagnosis.html" data-i18n="nav_diagnosis">Diagnosis</a>
+                    <a href="guide.html" data-i18n="nav_guide">Disease Guide</a>
                 </div>
             </div>
             <div class="footer-disclaimer">
-                <p>⚠️ <strong>Disclaimer:</strong> This tool is a diagnostic aid only. Always consult a licensed
-                    veterinarian for proper diagnosis and treatment. Do not rely solely on this application for medical
-                    decisions.</p>
+                <p>⚠️ <strong data-i18n="footer_disc_strong">Disclaimer:</strong> <span
+                        data-i18n="footer_disc_text">This tool is a diagnostic aid only. Always consult a licensed
+                        veterinarian for proper diagnosis and treatment. Do not rely solely on this application for
+                        medical decisions.</span></p>
             </div>
-            <p class="footer-copyright">© 2026 AgriVet Diagnosis System. All rights reserved.</p>
+            <p class="footer-copyright" data-i18n="footer_copy">© 2026 AgriVet Diagnosis System. All rights reserved.
+            </p>
         </div>
     </footer>
 

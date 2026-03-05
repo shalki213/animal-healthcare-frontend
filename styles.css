@@ -1853,3 +1853,408 @@ footer {
     padding: 3px 0;
     font-size: 14px;
 }
+
+/* ================================================================
+   FARMER UX ENHANCEMENTS — Phase 6
+   ================================================================ */
+
+/* Emergency Banner */
+.emergency-banner {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.15), rgba(192, 57, 43, 0.25));
+    border: 1px solid rgba(231, 76, 60, 0.4);
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: urgentPulse 2s infinite;
+}
+
+@keyframes urgentPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+    }
+}
+
+.emergency-icon {
+    font-size: 32px;
+}
+
+.emergency-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.emergency-text strong {
+    color: #ff6b6b;
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.emergency-text span {
+    color: #e6edf3;
+    font-size: 14px;
+}
+
+.emergency-btn {
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.emergency-call {
+    background: #e74c3c;
+    color: white;
+}
+
+.emergency-call:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+.emergency-whatsapp {
+    background: #25D366;
+    color: white;
+}
+
+.emergency-whatsapp:hover {
+    background: #128C7E;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .emergency-banner {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .emergency-btn {
+        text-align: center;
+    }
+}
+
+/* Language Toggle */
+.lang-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.lang-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #8b949e;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.lang-btn.active {
+    background: rgba(46, 204, 113, 0.15);
+    border-color: rgba(46, 204, 113, 0.4);
+    color: #2ecc71;
+    font-weight: 600;
+}
+
+/* Voice Input Button */
+.search-container {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#symptomInput {
+    flex: 1;
+    padding-right: 50px;
+    /* Make room for mic */
+}
+
+.voice-btn {
+    position: absolute;
+    right: 165px;
+    /* Adjust based on search button width */
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.voice-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.voice-btn.recording {
+    color: #e74c3c;
+    background: rgba(231, 76, 60, 0.15);
+    animation: micPulse 1.5s infinite;
+}
+
+@media (max-width: 600px) {
+    .voice-btn {
+        right: 10px;
+        top: 25px;
+        /* Adjust for stacked layout */
+    }
+}
+
+@keyframes micPulse {
+    0% {
+        transform: translateY(-50%) scale(1);
+        box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4);
+    }
+
+    50% {
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+    }
+
+    100% {
+        transform: translateY(-50%) scale(1);
+        box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
+    }
+}
+
+.voice-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #e74c3c;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: -5px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+.voice-status.hidden {
+    display: none;
+}
+
+.voice-pulse {
+    width: 10px;
+    height: 10px;
+    background-color: #e74c3c;
+    border-radius: 50%;
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.2;
+    }
+}
+
+/* Quick Symptom Chips */
+.quick-symptoms {
+    margin-top: 20px;
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.quick-symptoms h4 {
+    color: #8b949e;
+    font-size: 14px;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.symptom-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.symptom-chip {
+    background: rgba(52, 152, 219, 0.1);
+    border: 1px solid rgba(52, 152, 219, 0.2);
+    color: #e6edf3;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.symptom-chip:hover {
+    background: rgba(52, 152, 219, 0.25);
+    border-color: rgba(52, 152, 219, 0.4);
+    transform: translateY(-2px);
+}
+
+.symptom-chip.selected {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border-color: transparent;
+}
+
+/* Action Buttons (Print/Share) */
+.diagnosis-actions {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.diagnosis-actions.hidden {
+    display: none;
+}
+
+.diagnosis-actions h4 {
+    color: #e6edf3;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+}
+
+.print-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.print-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.share-btn {
+    background: #25D366;
+    color: white;
+}
+
+.share-btn:hover {
+    background: #128C7E;
+}
+
+@media (max-width: 600px) {
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+/* Diagnosis History */
+.history-section {
+    margin-top: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.history-section.hidden {
+    display: none;
+}
+
+.history-section h3 {
+    color: #2ecc71;
+    margin-bottom: 20px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.history-card {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.history-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(46, 204, 113, 0.3);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.history-date {
+    color: #8b949e;
+    font-size: 13px;
+}
+
+.history-top-match {
+    color: #e6edf3;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.history-symptoms {
+    color: #b0bec5;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

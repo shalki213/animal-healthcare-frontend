@@ -15,13 +15,17 @@
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Farmer Login</h2>
+            <h2 data-i18n="login_title">Farmer Login</h2>
             <form id="loginForm">
-                <input type="text" id="username" placeholder="Username" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit">Login</button>
+                <input type="text" id="username" placeholder="Username" data-i18n-placeholder="ph_username" required>
+                <input type="password" id="password" placeholder="Password" data-i18n-placeholder="ph_password"
+                    required>
+                <button type="submit" data-i18n="btn_login">Login</button>
             </form>
-            <p class="toggle-signup">Don't have an account? <a href="#signup">Sign up here</a></p>
+            <p class="toggle-signup">
+                <span data-i18n="txt_no_account">Don't have an account?</span>
+                <a href="#signup" data-i18n="link_signup">Sign up here</a>
+            </p>
         </div>
     </div>
 
@@ -30,41 +34,94 @@
         <div class="container">
             <div class="logo">
                 <h1>🐾 AgriVet Diagnosis</h1>
-                <p>Empowering Farmers through Early Detection</p>
+                <p data-i18n="logo_sub">Empowering Farmers through Early Detection</p>
             </div>
             <nav>
                 <div class="dropdown">
-                    <button class="dropdown-btn">☰ Menu</button>
+                    <button class="dropdown-btn" data-i18n="btn_menu">☰ Menu</button>
                     <div class="dropdown-content">
-                        <a href="home.html">🏠 Home</a>
-                        <a href="diagnosis.html">🔍 Diagnosis</a>
-                        <a href="guide.html">📚 Disease Guide</a>
+                        <a href="home.html">🏠 <span data-i18n="nav_home">Home</span></a>
+                        <a href="diagnosis.html">🔍 <span data-i18n="nav_diagnosis">Diagnosis</span></a>
+                        <a href="guide.html">📚 <span data-i18n="nav_guide">Disease Guide</span></a>
                     </div>
                 </div>
                 <ul>
-                    <li><button id="loginBtn" class="nav-btn">Login</button></li>
-                    <li><button id="logoutBtn" class="nav-btn hidden">Logout</button></li>
+                    <li><button id="loginBtn" class="nav-btn" data-i18n="btn_nav_login">Login</button></li>
+                    <li><button id="logoutBtn" class="nav-btn hidden"><span
+                                data-i18n="btn_nav_logout">Logout</span></button></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main class="container">
+        <!-- Emergency Vet Contact Banner -->
+        <div class="emergency-banner" id="emergencyBanner">
+            <span class="emergency-icon">🚨</span>
+            <div class="emergency-text">
+                <strong data-i18n="emergency_title">Animal Emergency?</strong>
+                <span data-i18n="emergency_desc">If your animal is in critical condition, contact a vet
+                    immediately</span>
+            </div>
+            <a href="tel:+254796169582" class="emergency-btn emergency-call" id="emergencyCallBtn">📞 <span
+                    data-i18n="call_vet">Call Vet</span></a>
+            <a href="https://wa.me/254796169582?text=Emergency%3A%20I%20have%20an%20animal%20health%20emergency.%20Can%20you%20assist%20me%20urgently%3F"
+                class="emergency-btn emergency-whatsapp" target="_blank">💬 WhatsApp</a>
+        </div>
+
+        <!-- Language Toggle -->
+        <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="en" id="langEn">🇬🇧 English</button>
+            <button class="lang-btn" data-lang="sw" id="langSw">🇰🇪 Kiswahili</button>
+        </div>
+
         <!-- Diagnosis Section -->
         <section class="diagnosis-section">
-            <h2>🔍 Search for Disease Diagnosis</h2>
-            <p>Type your animal's symptoms below — separate multiple symptoms with commas</p>
+            <h2 data-i18n="search_title">🔍 Search for Disease Diagnosis</h2>
+            <p data-i18n="search_subtitle">Type your animal's symptoms below — or tap the common symptoms</p>
 
             <div class="search-container">
                 <input type="text" id="symptomInput" placeholder="E.g., cough, fever, diarrhea, loss of appetite..."
-                    autocomplete="off">
-                <button id="searchButton">Search Symptoms</button>
+                    autocomplete="off" data-i18n-placeholder="search_placeholder">
+                <button type="button" id="voiceInputBtn" class="voice-btn" title="Speak symptoms">
+                    🎤
+                </button>
+                <button id="searchButton" data-i18n="search_btn">Search Symptoms</button>
+            </div>
+
+            <!-- Voice Input Status -->
+            <div id="voiceStatus" class="voice-status hidden">
+                <div class="voice-pulse"></div>
+                <span data-i18n="listening">Listening... speak now</span>
+            </div>
+
+            <!-- Quick Disease Buttons -->
+            <div class="quick-symptoms">
+                <h4 data-i18n="quick_symptoms_title">⚡ Select a Common Disease:</h4>
+                <div class="symptom-chips" id="symptomChips">
+                    <button class="symptom-chip" data-symptom="Foot and Mouth Disease (FMD)">🐄 <span
+                            data-i18n="sym_fmd">Foot and Mouth Disease</span></button>
+                    <button class="symptom-chip" data-symptom="Mastitis">🥛 <span
+                            data-i18n="sym_mastitis">Mastitis</span></button>
+                    <button class="symptom-chip" data-symptom="Bovine Pneumonia">🫁 <span
+                            data-i18n="sym_pneumonia">Bovine Pneumonia</span></button>
+                    <button class="symptom-chip" data-symptom="Blackleg">🦵 <span
+                            data-i18n="sym_blackleg">Blackleg</span></button>
+                    <button class="symptom-chip" data-symptom="Orf (Sore Mouth)">🐑 <span data-i18n="sym_orf">Orf (Sore
+                            Mouth)</span></button>
+                    <button class="symptom-chip" data-symptom="Swine Dysentery">🐷 <span data-i18n="sym_swine">Swine
+                            Dysentery</span></button>
+                    <button class="symptom-chip" data-symptom="Newcastle Disease">🐔 <span
+                            data-i18n="sym_newcastle">Newcastle Disease</span></button>
+                    <button class="symptom-chip" data-symptom="Coccidiosis">🦠 <span
+                            data-i18n="sym_coccidiosis">Coccidiosis</span></button>
+                </div>
             </div>
 
             <div class="filters">
-                <label>🐄 Animal Type:</label>
+                <label data-i18n="animal_type">🐄 Animal Type:</label>
                 <select id="animalType">
-                    <option value="">All Animals</option>
+                    <option value="" data-i18n="all_animals">All Animals</option>
                     <option value="cattle">🐄 Cattle</option>
                     <option value="sheep">🐑 Sheep</option>
                     <option value="goat">🐐 Goat</option>
@@ -75,18 +132,19 @@
 
             <!-- ENHANCED Photo Section with Tabs -->
             <div class="photo-upload-section">
-                <h3>📸 AI Photo Diagnosis</h3>
-                <p>Take a photo or upload one — our AI will analyze it for disease symptoms</p>
+                <h3 data-i18n="photo_ai_title">📸 AI Photo Diagnosis</h3>
+                <p data-i18n="photo_ai_desc">Take a photo or upload one — our AI will analyze it for disease symptoms
+                </p>
 
                 <!-- Tab Buttons -->
                 <div class="photo-tabs" id="photoTabs">
                     <button class="photo-tab active" data-tab="camera" id="cameraTabBtn">
                         <span class="tab-icon">📷</span>
-                        <span class="tab-label">Take Photo</span>
+                        <span class="tab-label" data-i18n="tab_camera">Take Photo</span>
                     </button>
                     <button class="photo-tab" data-tab="upload" id="uploadTabBtn">
                         <span class="tab-icon">📁</span>
-                        <span class="tab-label">Upload File</span>
+                        <span class="tab-label" data-i18n="tab_upload">Upload File</span>
                     </button>
                 </div>
 
@@ -95,20 +153,20 @@
                     <div class="camera-container" id="cameraContainer">
                         <video id="cameraFeed" autoplay playsinline></video>
                         <div class="camera-overlay">
-                            <p>Point your camera at the sick animal</p>
+                            <p data-i18n="camera_point">Point your camera at the sick animal</p>
                         </div>
                         <div class="camera-controls">
                             <button type="button" id="startCameraBtn" class="camera-btn camera-start-btn">
-                                📷 Open Camera
+                                📷 <span data-i18n="cam_open">Open Camera</span>
                             </button>
                             <button type="button" id="captureBtn" class="camera-btn camera-capture-btn hidden">
-                                📸 Capture Photo
+                                📸 <span data-i18n="cam_capture">Capture Photo</span>
                             </button>
                             <button type="button" id="switchCameraBtn" class="camera-btn camera-switch-btn hidden">
-                                🔄 Flip
+                                🔄 <span data-i18n="cam_flip">Flip</span>
                             </button>
                             <button type="button" id="stopCameraBtn" class="camera-btn camera-stop-btn hidden">
-                                ✕ Close
+                                ✕ <span data-i18n="cam_close">Close</span>
                             </button>
                         </div>
                     </div>
@@ -124,8 +182,8 @@
                             <polyline points="17 8 12 3 7 8"></polyline>
                             <line x1="12" y1="3" x2="12" y2="15"></line>
                         </svg>
-                        <p><strong>Tap here to choose a file</strong></p>
-                        <p class="upload-hint">PNG, JPG, GIF up to 5MB</p>
+                        <p><strong data-i18n="upload_tap">Tap here to choose a file</strong></p>
+                        <p class="upload-hint" data-i18n="upload_hint">PNG, JPG, GIF up to 5MB</p>
                         <input type="file" id="photoInput" accept="image/*" hidden>
                     </div>
                 </div>
@@ -135,40 +193,67 @@
                     <img id="previewImage" src="" alt="Photo preview of your animal">
                     <div class="preview-actions">
                         <button type="button" id="analyzePhotoBtn" class="analyze-photo-btn">
-                            🔬 Analyze Photo with AI
+                            🔬 <span data-i18n="btn_analyze" id="analyzeText">Analyze Photo with AI</span>
                         </button>
-                        <button type="button" id="removePhotoBtn" class="remove-photo-btn">🗑️ Remove</button>
+                        <button type="button" id="removePhotoBtn" class="remove-photo-btn">🗑️ <span
+                                data-i18n="btn_remove">Remove</span></button>
                     </div>
-                    <span class="preview-label">✅ Photo ready — tap Analyze to scan</span>
+                    <span class="preview-label" data-i18n="photo_ready">✅ Photo ready — tap Analyze to scan</span>
                 </div>
 
                 <!-- AI Scan Results (appears after analysis) -->
                 <div id="aiScanResults" class="ai-scan-results hidden">
                     <div id="scanProgress" class="scan-progress hidden">
                         <div class="scan-spinner"></div>
-                        <p class="scan-text">🔬 AI is analyzing your photo...</p>
-                        <p class="scan-subtext">This may take a few seconds</p>
+                        <p class="scan-text" data-i18n="scan_analyzing">🔬 AI is analyzing your photo...</p>
+                        <p class="scan-subtext" data-i18n="scan_wait">This may take a few seconds</p>
                     </div>
                     <div id="scanResultContent"></div>
                 </div>
 
                 <!-- Photo Tips for Farmers -->
                 <div class="photo-tips">
-                    <h4>💡 Tips for a Good Photo</h4>
+                    <h4 data-i18n="photo_tips_title">💡 Tips for a Good Photo</h4>
                     <ul>
-                        <li>📍 <strong>Get close</strong> — focus on the affected area (swelling, wound, eyes)</li>
-                        <li>☀️ <strong>Good lighting</strong> — natural daylight works best</li>
-                        <li>📐 <strong>Hold steady</strong> — avoid blurry photos for better AI results</li>
-                        <li>🔄 <strong>Multiple angles</strong> — take photos from different sides if possible</li>
+                        <li>📍 <strong data-i18n="tip_close_strong">Get close</strong> <span
+                                data-i18n="tip_close_text">— focus on the affected area (swelling, wound, eyes)</span>
+                        </li>
+                        <li>☀️ <strong data-i18n="tip_lighting_strong">Good lighting</strong> <span
+                                data-i18n="tip_lighting_text">— natural daylight works best</span></li>
+                        <li>📐 <strong data-i18n="tip_steady_strong">Hold steady</strong> <span
+                                data-i18n="tip_steady_text">— avoid blurry photos for better AI results</span></li>
+                        <li>🔄 <strong data-i18n="tip_angles_strong">Multiple angles</strong> <span
+                                data-i18n="tip_angles_text">— take photos from different sides if possible</span></li>
                     </ul>
                 </div>
             </div>
 
-            <div id="resultsContainer" class="results-container hidden">
-                <div id="resultCard" class="result-card"></div>
+            <!-- Diagnosis Action Buttons (Print / Share) -->
+            <div id="diagnosisActions" class="diagnosis-actions hidden">
+                <h4 data-i18n="save_share">Save or Share Report</h4>
+                <div class="action-buttons">
+                    <button class="action-btn print-btn" id="printReportBtn">🖨️ <span data-i18n="print_report">Print
+                            Report</span></button>
+                    <button class="action-btn share-btn" id="shareWhatsAppBtn">💬 <span data-i18n="share_whatsapp">Share
+                            to Vet (WhatsApp)</span></button>
+                </div>
             </div>
+        </section>
 
-            <div id="suggestionsContainer" class="suggestions-container"></div>
+        <!-- Diagnosis History Section -->
+        <section class="history-section hidden" id="historySection">
+            <h3 data-i18n="history_title">🕒 My Past Diagnoses</h3>
+            <div class="history-list" id="historyList">
+                <!-- History cards injected here by JS -->
+            </div>
+        </section>
+        </div>
+
+        <div id="resultsContainer" class="results-container hidden">
+            <div id="resultCard" class="result-card"></div>
+        </div>
+
+        <div id="suggestionsContainer" class="suggestions-container"></div>
         </section>
     </main>
 
