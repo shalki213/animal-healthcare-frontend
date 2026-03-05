@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: animal-healthcare-backend
+    env: node
+    buildCommand: "cd server && npm install"
+    startCommand: "cd server && node server.js"
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false # User must provide this (e.g., MongoDB Atlas)
+      - key: JWT_SECRET
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false # User must provide their Gemini Key
+      - key: UPLOAD_DIR
+        value: uploads
