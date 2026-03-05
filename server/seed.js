@@ -112,6 +112,26 @@ const diseaseDatabase = {
             ],
             description: "Acute, often fatal disease caused by Clostridium chauvoei.",
             prevention: "Vaccination with blackleg vaccine, proper wound care"
+        },
+        {
+            name: "Bovine Brucellosis",
+            symptoms: ["abortion", "infertility", "retained placenta", "reduced milk", "swollen testicles", "weak calves"],
+            confidence: 0.94,
+            treatment: [
+                {
+                    name: "No Effective Treatment (Cull)",
+                    medicines: [
+                        { name: "Antibiotics (variable success)", dosage: "Oxytetracycline combined with Streptomycin may reduce shedding, but rarely cures" }
+                    ]
+                }
+            ],
+            homeRemedies: [
+                { remedy: "Immediate Isolation (First-Aid)", instructions: "Immediately separate aborting cows from the rest of the herd to prevent transmission" },
+                { remedy: "Safe disposal", instructions: "Properly bury or burn aborted fetuses and placenta wearing complete protective gear (zoonotic disease)" },
+                { remedy: "Disinfection", instructions: "Thoroughly disinfect the calving area with strong bleach or phenolic disinfectants" }
+            ],
+            description: "Highly contagious bacterial disease causing reproductive failure. Zoonotic (can infect humans).",
+            prevention: "Vaccination (strain 19 or RB51), blood testing, biosecurity"
         }
     ],
     sheep: [
@@ -164,6 +184,27 @@ const diseaseDatabase = {
             ],
             description: "Bacterial infection of the foot, highly contagious.",
             prevention: "Foot baths, proper housing, hoof trimming, quarantine"
+        },
+        {
+            name: "Orf (Sore Mouth)",
+            symptoms: ["scabs on lips", "blister", "mouth sores", "weight loss", "reluctance to eat", "lesions on teats"],
+            confidence: 0.95,
+            treatment: [
+                {
+                    name: "Supportive Care",
+                    medicines: [
+                        { name: "Topical Antibiotics", dosage: "Apply to secondary bacterial infections on scabs" },
+                        { name: "Pain relievers", dosage: "Mild analgesics if eating is severely reduced" }
+                    ]
+                }
+            ],
+            homeRemedies: [
+                { remedy: "Soft palatable feed", instructions: "Provide very soft grass, moistened grains, and accessible water to minimize lip pain while eating" },
+                { remedy: "Warm saltwater wash", instructions: "Gently dab scabs with warm saltwater to keep lesions clean (wear gloves, it is contagious to humans)" },
+                { remedy: "Aloe vera gel", instructions: "Apply pure aloe vera gel gently to the crusts to soothe pain and soften scabs" }
+            ],
+            description: "Highly contagious viral skin disease (zoonotic).",
+            prevention: "Vaccination in endemic flocks, quarantine new animals"
         }
     ],
     goat: [
@@ -186,6 +227,26 @@ const diseaseDatabase = {
             ],
             description: "Chronic viral disease affecting joints and nervous system.",
             prevention: "Test and cull policy, separating infected kids, vaccination"
+        },
+        {
+            name: "Contagious Ecthyma",
+            symptoms: ["scabs on mouth", "lip sores", "blister", "udder lesions", "weight loss", "reluctance to nurse"],
+            confidence: 0.94,
+            treatment: [
+                {
+                    name: "Topical Treatment",
+                    medicines: [
+                        { name: "Antiseptic spray", dosage: "Apply chlorhexidine or iodine spray to prevent secondary infection" }
+                    ]
+                }
+            ],
+            homeRemedies: [
+                { remedy: "Honey and Turmeric paste", instructions: "Apply a paste of raw honey and turmeric to the scabs twice daily to promote healing" },
+                { remedy: "Bottle feeding (First-Aid)", instructions: "If kids refuse to nurse due to lip pain, immediately bottle-feed them warm milk to prevent starvation" },
+                { remedy: "Neem leaf wash", instructions: "Boil neem leaves in water, let cool, and use as an antibacterial wash for the lesions" }
+            ],
+            description: "A viral skin disease identical to Orf in sheep, causing painful scabs.",
+            prevention: "Live vaccine applied to skin scratches"
         }
     ],
     pig: [
@@ -216,6 +277,26 @@ const diseaseDatabase = {
             ],
             description: "Infectious diarrheal disease caused by Brachyspira hyodysenteriae.",
             prevention: "Biosecurity, sanitation, vaccination"
+        },
+        {
+            name: "Porcine Parvovirus (PPV)",
+            symptoms: ["mummified pigs", "stillbirth", "small litters", "infertility", "delayed return to estrus"],
+            confidence: 0.96,
+            treatment: [
+                {
+                    name: "No Treatment",
+                    medicines: [
+                        { name: "Supportive Care", dosage: "Provide antibiotics only if secondary uterine infections occur" }
+                    ]
+                }
+            ],
+            homeRemedies: [
+                { remedy: "Maternal immunity building (First-Aid)", instructions: "Feed feces or mummified fetuses from affected pens to young gilts BEFORE breeding to establish natural immunity" },
+                { remedy: "Stress reduction", instructions: "Provide extra bedding, optimal temperatures, and reduce overcrowding to minimize stress on pregnant sows" },
+                { remedy: "Nutritional support", instructions: "Increase vitamin E and selenium in diet to support reproductive recovery" }
+            ],
+            description: "Viral disease causing reproductive failure in naive pregnant swine (SMEDI syndrome).",
+            prevention: "Vaccination of all breeding stock prior to mating"
         }
     ],
     poultry: [
@@ -270,6 +351,28 @@ const diseaseDatabase = {
             ],
             description: "Parasitic intestinal disease caused by Eimeria species.",
             prevention: "Coccidiostats in feed, good sanitation, moisture control"
+        },
+        {
+            name: "Fowl Pox",
+            symptoms: ["wart-like nodules", "scabs on comb", "lesions on wattles", "difficulty breathing", "drop in egg production", "loss of appetite"],
+            confidence: 0.93,
+            treatment: [
+                {
+                    name: "Supportive Care",
+                    medicines: [
+                        { name: "Topical iodine", dosage: "Apply directly to skin lesions to dry them out" },
+                        { name: "Broad-spectrum antibiotics", dosage: "Added to water to prevent secondary bacterial infections" }
+                    ]
+                }
+            ],
+            homeRemedies: [
+                { remedy: "Mosquito control (First-Aid)", instructions: "Immediately remove standing water and use natural repellents, as mosquitoes spread the virus rapidly" },
+                { remedy: "Iodine dab", instructions: "Gently dab scabs with dilute iodine using a cotton swab to prevent secondary infections" },
+                { remedy: "Apple cider vinegar", instructions: "Add 1 tbsp ACV per gallon of drinking water to reduce slime accumulation in throats" },
+                { remedy: "Soft mash", instructions: "Soak regular feed in warm water to make a soft mash if birds have mouth lesions and struggle to eat dry pellets" }
+            ],
+            description: "Slow-spreading viral infection causing skin lesions or diphtheritic plaques in the mouth/respiratory tract.",
+            prevention: "Wing-web vaccination, mosquito control"
         }
     ]
 };

@@ -50,6 +50,12 @@ async function displayFilteredGuide() {
         }
 
         diseaseGuideDiv.innerHTML = guideHTML;
+
+        // Apply translations to the newly rendered content
+        const activeLangBtn = document.querySelector('.lang-btn.active');
+        if (activeLangBtn && window.applyTranslations) {
+            window.applyTranslations(activeLangBtn.dataset.lang);
+        }
     } catch (error) {
         diseaseGuideDiv.innerHTML = `<p style="color: #e74c3c;">Failed to load diseases: ${error.message}</p>`;
     }
@@ -62,12 +68,12 @@ function createDiseaseCard(disease) {
     return `
         <div class="disease-card">
             <h4>${disease.name}</h4>
-            <p><strong>Confidence:</strong> ${(disease.confidence * 100).toFixed(0)}%</p>
-            <p><strong>Symptoms:</strong> ${disease.symptoms.join(', ')}</p>
-            <p><strong>Description:</strong> ${disease.description}</p>
+            <p><strong data-i18n="guide_confidence">Confidence:</strong> ${(disease.confidence * 100).toFixed(0)}%</p>
+            <p><strong data-i18n="guide_symptoms">Symptoms:</strong> ${disease.symptoms.join(', ')}</p>
+            <p><strong data-i18n="guide_description">Description:</strong> ${disease.description}</p>
             
             <div class="disease-details">
-                <h5>Treatment Options:</h5>
+                <h5 data-i18n="guide_treatment_opts">Treatment Options:</h5>
                 ${disease.treatment.map(treatmentGroup => `
                     <div class="treatment-box">
                         <h6>${treatmentGroup.name}</h6>
@@ -75,7 +81,7 @@ function createDiseaseCard(disease) {
                             ${treatmentGroup.medicines.map(med => `
                                 <div class="medicine-item">
                                     <div class="medicine-name">${med.name}</div>
-                                    <div class="medicine-dosage">Dosage: ${med.dosage}</div>
+                                    <div class="medicine-dosage"><span data-i18n="guide_dosage">Dosage:</span> ${med.dosage}</div>
                                 </div>
                             `).join('')}
                         </div>
@@ -84,7 +90,7 @@ function createDiseaseCard(disease) {
                 
                 ${remedies.length > 0 ? `
                     <div class="treatment-box" style="background-color: #fff9e6; border-left-color: #f39c12;">
-                        <h6 style="color: #f39c12;">Home Remedies</h6>
+                        <h6 style="color: #f39c12;" data-i18n="guide_home_remedies">Home Remedies</h6>
                         <div class="medicine-list">
                             ${remedies.map(remedy => `
                                 <div class="medicine-item" style="background-color: #fffbf0;">
@@ -96,7 +102,7 @@ function createDiseaseCard(disease) {
                     </div>
                 ` : ''}
                 
-                <p><strong>Prevention:</strong> ${disease.prevention}</p>
+                <p><strong data-i18n="guide_prevention">Prevention:</strong> ${disease.prevention}</p>
             </div>
         </div>
     `;

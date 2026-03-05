@@ -4,7 +4,9 @@
  * Include this script BEFORE script.js and guide-script.js.
  */
 
-const API_BASE_URL = 'http://localhost:5000/api';
+// Dynamically determine the API base URL based on where the frontend is hosted
+const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE_URL = isLocalhost ? 'http://localhost:5000/api' : '/api';
 
 // ---------------------------------------------------------------------------
 // Helpers
