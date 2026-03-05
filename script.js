@@ -77,7 +77,7 @@ if (loginForm) {
         const originalText = submitBtn.textContent;
 
         // Check if we're in signup mode
-        const isSignup = submitBtn.textContent === 'Create Account';
+        const isSignup = submitBtn.getAttribute('data-i18n') === 'btn_signup';
 
         try {
             submitBtn.disabled = true;
