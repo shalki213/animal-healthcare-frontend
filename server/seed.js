@@ -404,11 +404,15 @@ async function seedDatabase() {
         }
 
         console.log(`\n🎉 Successfully seeded ${totalInserted} diseases into MongoDB!`);
-        process.exit(0);
+        return totalInserted;
     } catch (error) {
         console.error('❌ Seeding failed:', error.message);
-        process.exit(1);
+        throw error;
     }
 }
 
-seedDatabase();
+if (require.main === module) {
+    seedDatabase().then(() => process.exit(0)).catch(() => process.exit(1));
+}
+
+module.exports = seedDatabase;
