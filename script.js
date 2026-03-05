@@ -609,33 +609,56 @@ function setupPhotoUpload() {
 
                 // Display AI results
                 const results = data.results || [];
+
+                // Show AI error info banner if Gemini failed
+                let headerHtml = '';
+                if (data.aiError) {
+                    headerHtml += `
+                        <div class="scan-result-card" style="border-color: rgba(243, 156, 18, 0.3); background: rgba(243, 156, 18, 0.06);">
+                            <h4 style="color: #f39c12;">⚠️ AI Vision Temporarily Unavailable</h4>
+                            <p style="color: #b0bec5;">The AI image scanner couldn't process your photo right now. Here are common diseases for your animal type instead.</p>
+                            <p style="color: #8b949e; font-size: 13px;"><strong>Tip:</strong> Try typing symptoms manually above for a more accurate diagnosis.</p>
+                        </div>
+                    `;
+                }
+
                 if (results.length === 0) {
-                    scanResultContent.innerHTML = `
+                    scanResultContent.innerHTML = headerHtml + `
                         <div class="scan-result-card">
                             <h4>🤔 No Match Found</h4>
                             <p>The AI could not confidently identify a disease from this photo. Try:</p>
                             <ul>
-                                <li>Taking a clearer photo with better lighting</li>
-                                <li>Focusing on the affected area</li>
-                                <li>Also entering symptoms manually above</li>
+                                <li>📸 Taking a clearer photo with better lighting</li>
+                                <li>🎯 Focusing on the affected area (wound, swelling, eyes)</li>
+                                <li>🐄 Selecting the correct animal type above</li>
+                                <li>✍️ Entering symptoms manually in the search box</li>
                             </ul>
                         </div>
                     `;
                 } else {
-                    let html = '<h4 class="scan-results-title">🔬 AI Scan Results</h4>';
+                    let html = headerHtml;
+                    html += data.isAiAssisted
+                        ? '<h4 class="scan-results-title">🔬 AI Scan Results</h4>'
+                        : '<h4 class="scan-results-title">📋 Common Diseases to Consider</h4>';
+
                     results.forEach((result, index) => {
                         const isAiMatch = result.aiMatch || result.matchedViaAI;
-                        const confidenceColor = result.confidence >= 70 ? '#2ecc71' : result.confidence >= 40 ? '#f39c12' : '#e74c3c';
+                        const isSuggestion = result.isSuggestion;
+                        const confidence = result.confidence || 30;
+                        const confidenceColor = confidence >= 70 ? '#2ecc71' : confidence >= 40 ? '#f39c12' : '#e74c3c';
 
                         html += `
-                            <div class="scan-result-card ${index === 0 ? 'top-result' : ''}">
-                                ${index === 0 ? '<span class="top-badge">🏆 Best Match</span>' : ''}
+                            <div class="scan-result-card ${index === 0 && !isSuggestion ? 'top-result' : ''}">
+                                ${index === 0 && !isSuggestion ? '<span class="top-badge">🏆 Best Match</span>' : ''}
                                 ${isAiMatch ? '<span class="ai-badge">🤖 AI Vision Match</span>' : ''}
+                                ${isSuggestion ? '<span class="ai-badge" style="background: linear-gradient(135deg, #f39c12, #e67e22);">📋 Suggested</span>' : ''}
                                 <h4>${result.disease || result.name}</h4>
-                                <div class="confidence-bar">
-                                    <div class="confidence-fill" style="width: ${result.confidence}%; background: ${confidenceColor}"></div>
-                                    <span class="confidence-text">${result.confidence}% confidence</span>
-                                </div>
+                                ${!isSuggestion ? `
+                                    <div class="confidence-bar">
+                                        <div class="confidence-fill" style="width: ${confidence}%; background: ${confidenceColor}"></div>
+                                        <span class="confidence-text">${confidence}% confidence</span>
+                                    </div>
+                                ` : ''}
                                 ${result.aiAnalysis ? `<p class="ai-analysis"><strong>AI Notes:</strong> ${result.aiAnalysis}</p>` : ''}
                                 <p class="scan-symptoms"><strong>Key Symptoms:</strong> ${(result.symptoms || result.matchedSymptoms || []).join(', ')}</p>
                                 ${result.description ? `<p class="scan-description">${result.description}</p>` : ''}
