@@ -311,8 +311,13 @@ function renderDiseaseDetail(disease, container) {
     // Normalize field names: API may return homeRemedies, original DB uses homemedies
     const remedies = disease.homeRemedies || disease.homemedies || [];
 
+    // Add AI badge if this was matched via Gemini
+    const badgeHTML = disease.isAiMatch ?
+        `<span style="background: linear-gradient(135deg, #a8c0ff, #3f2b96); color: white; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; margin-left: 10px; vertical-align: middle;">✨ AI Vision Match</span>`
+        : '';
+
     container.innerHTML = `
-        <h3>🎯 Possible Disease: ${disease.name}</h3>
+        <h3>🎯 Possible Disease: ${disease.name} ${badgeHTML}</h3>
         <div class="disease-info">
             <p><strong>Description:</strong> ${disease.description}</p>
             
@@ -366,10 +371,11 @@ function displaySuggestions(suggestions) {
     suggestionsContainer.innerHTML = '<h3>Other Possible Diseases:</h3>';
 
     suggestions.forEach(disease => {
+        const aiBadge = disease.isAiMatch ? ' <span style="font-size: 10px; color: #3f2b96; font-weight: bold;">✨ AI</span>' : '';
         const suggestionDiv = document.createElement('div');
         suggestionDiv.className = 'suggestion-item';
         suggestionDiv.innerHTML = `
-            <strong>${disease.name}</strong> (${(disease.confidence * 100).toFixed(0)}% confidence)
+            <strong>${disease.name}</strong> (${(disease.confidence * 100).toFixed(0)}% confidence)${aiBadge}
         `;
         suggestionDiv.addEventListener('click', () => {
             renderDiseaseDetail(disease, resultCard);
