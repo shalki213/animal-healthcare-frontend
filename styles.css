@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -16,10 +18,11 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--light-bg);
-    color: var(--text-color);
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0d1117;
+    color: #e6edf3;
     line-height: 1.6;
+    min-height: 100vh;
 }
 
 .container {
@@ -30,13 +33,16 @@ body {
 
 /* Header Styles */
 header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: rgba(46, 204, 113, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     color: white;
     padding: 20px 0;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 header .container {
@@ -132,7 +138,8 @@ nav ul {
     display: block;
 }
 
-nav a, .nav-btn {
+nav a,
+.nav-btn {
     color: white;
     text-decoration: none;
     font-weight: 500;
@@ -174,13 +181,16 @@ nav a:hover {
 }
 
 .modal-content {
-    background-color: white;
+    background: rgba(30, 40, 55, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     margin: 10% auto;
     padding: 30px;
     border-radius: var(--border-radius);
     width: 90%;
     max-width: 400px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .close {
@@ -204,9 +214,11 @@ nav a:hover {
     width: 100%;
     padding: 12px;
     margin: 10px 0;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--border-radius);
     font-size: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #e6edf3;
 }
 
 .modal-content button {
@@ -242,21 +254,24 @@ main {
 }
 
 section {
-    background: white;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: 30px;
     margin: 20px 0;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 section h2 {
-    color: var(--primary-color);
+    color: #2ecc71;
     margin-bottom: 15px;
     font-size: 24px;
 }
 
 section p {
-    color: #666;
+    color: #8b949e;
     margin-bottom: 20px;
 }
 
@@ -272,10 +287,12 @@ section p {
     flex: 1;
     min-width: 250px;
     padding: 12px 15px;
-    border: 2px solid #ddd;
+    border: 2px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--border-radius);
     font-size: 16px;
     transition: border-color 0.3s;
+    background: rgba(255, 255, 255, 0.08);
+    color: #e6edf3;
 }
 
 #symptomInput:focus {
@@ -337,13 +354,13 @@ section p {
 }
 
 .upload-area {
-    border: 2px dashed var(--secondary-color);
+    border: 2px dashed rgba(52, 152, 219, 0.5);
     border-radius: var(--border-radius);
     padding: 40px;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s;
-    background-color: #f8f9fa;
+    background-color: rgba(255, 255, 255, 0.04);
 }
 
 .upload-area:hover {
@@ -404,11 +421,15 @@ section p {
 }
 
 .result-card {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(46, 204, 113, 0.08));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 25px;
     border-radius: var(--border-radius);
     border-left: 5px solid var(--primary-color);
     margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 5px solid var(--primary-color);
 }
 
 .result-card h3 {
@@ -427,7 +448,8 @@ section p {
     margin-bottom: 10px;
 }
 
-.disease-info ul, .disease-info ol {
+.disease-info ul,
+.disease-info ol {
     margin-left: 20px;
     color: #555;
 }
@@ -461,7 +483,7 @@ section p {
 .medicine-item {
     margin: 10px 0;
     padding: 10px;
-    background-color: #f9f9f9;
+    background-color: rgba(255, 255, 255, 0.05);
     border-radius: 5px;
 }
 
@@ -519,11 +541,13 @@ section p {
 }
 
 .disease-card {
-    background: white;
-    border: 1px solid #ddd;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     padding: 20px;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -616,12 +640,15 @@ footer {
 }
 
 .feature-card {
-    background: white;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: 30px;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .feature-card:hover {
@@ -636,7 +663,7 @@ footer {
 }
 
 .feature-card p {
-    color: #666;
+    color: #8b949e;
     margin-bottom: 20px;
 }
 
