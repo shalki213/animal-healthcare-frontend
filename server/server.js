@@ -55,6 +55,17 @@ app.use('/api/diseases', diseaseRoutes);
 app.use('/api/diagnosis', diagnosisRoutes);
 app.use('/api/upload', uploadRoutes);
 
+// Database Seeding Route (One-time use for production)
+app.get('/api/run-seed', async (req, res) => {
+    try {
+        const seedDatabase = require('./seed');
+        const count = await seedDatabase();
+        res.json({ message: `Successfully seeded ${count} diseases into MongoDB Atlas!` });
+    } catch (error) {
+        res.status(500).json({ error: 'Seeding failed', details: error.message });
+    }
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });
