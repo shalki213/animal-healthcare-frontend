@@ -7,7 +7,17 @@ const DiagnosisLog = require('../models/DiagnosisLog');
 const { auth } = require('../middleware/auth');
 const { upload } = require('../middleware/upload');
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+// Initialize Gemini AI securely
+let ai = null;
+try {
+    if (process.env.GEMINI_API_KEY) {
+        ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+    } else {
+        console.warn('⚠️ GEMINI_API_KEY is missing. AI photo diagnosis features will be disabled.');
+    }
+} catch (error) {
+    console.error('❌ Failed to initialize Gemini AI:', error.message);
+}
 
 const router = express.Router();
 
@@ -25,7 +35,7 @@ router.post('/', auth, upload.single('photo'), async (req, res, next) => {
         let aiError = null;
 
         // If a photo was uploaded, use Gemini Vision to analyze it
-        if (req.file && process.env.GEMINI_API_KEY) {
+        if (req.file && ai) {
             try {
                 // Read the image file and convert to base64
                 const imagePath = path.join(__dirname, '..', 'uploads', req.file.filename);
