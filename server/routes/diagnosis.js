@@ -55,6 +55,7 @@ Look for ANY of these common livestock disease signs:
 - Respiratory distress
 - Hair/feather loss, poor coat condition
 - Visible parasites
+- Excessive salivation, drooling, or foaming at the mouth (FMD)
 - Mouth/hoof lesions (FMD)
 - Lumps, nodules (Lumpy Skin Disease)
 
@@ -139,53 +140,68 @@ If the image is too unclear or doesn't show an animal, still try your best but s
 
         let results = [];
 
-        if (isPhotoOnlyRequest && !aiMatched) {
-            // Photo-only request but AI failed — return top diseases as suggestions
+        // Normal scoring — match symptoms against diseases
+        allDiseases.forEach(disease => {
+            let matchCount = 0;
+            let isAiExactMatch = false;
+
+            // Check if Gemini exactly matched this disease name
+            if (aiAnalysis && aiAnalysis.suspected_disease) {
+                const suspectedLower = aiAnalysis.suspected_disease.toLowerCase();
+                const diseaseLower = disease.name.toLowerCase();
+                // Avoid matching generic healthy words with diseases
+                if (suspectedLower.length > 3 && suspectedLower !== 'none' && suspectedLower !== 'healthy' && suspectedLower !== 'unknown') {
+                    if (diseaseLower.includes(suspectedLower) || suspectedLower.includes(diseaseLower)) {
+                        isAiExactMatch = true;
+                        matchCount += 5; // Heavy weight for AI exact matches
+                    }
+                }
+            }
+
+            symptomList.forEach(querySymptom => {
+                const hasMatch = disease.symptoms.some(diseaseSymptom =>
+                    diseaseSymptom.toLowerCase().includes(querySymptom) ||
+                    querySymptom.includes(diseaseSymptom.toLowerCase())
+                );
+                if (hasMatch) matchCount++;
+            });
+
+            // If Gemini is highly confident it's this disease but lists no symptoms, force a match
+            if (isAiExactMatch && matchCount === 5) {
+                results.push({
+                    diseaseId: disease._id,
+                    diseaseName: disease.name,
+                    matchScore: Math.min(1, Math.max(0.7, (aiAnalysis.confidence || 0.7))),
+                    isAiMatch: true,
+                    aiAnalysis: aiAnalysis.analysis_notes,
+                    disease: disease.toObject()
+                });
+            } else if (matchCount > 0) {
+                results.push({
+                    diseaseId: disease._id,
+                    diseaseName: disease.name,
+                    matchScore: Math.min(1, matchCount / Math.max(symptomList.length, 1)),
+                    isAiMatch: isAiExactMatch,
+                    aiAnalysis: aiAnalysis?.analysis_notes,
+                    disease: disease.toObject()
+                });
+            }
+        });
+
+        // Sort by match score
+        results.sort((a, b) => b.matchScore - a.matchScore);
+
+        if (isPhotoOnlyRequest && results.length === 0) {
+            // Photo-only request but AI failed to find ANY matched symptoms — return top diseases as suggestions
             results = allDiseases.slice(0, 5).map(disease => ({
                 diseaseId: disease._id,
                 diseaseName: disease.name,
                 matchScore: 0.3,
                 isAiMatch: false,
                 isSuggestion: true,
+                aiAnalysis: aiAnalysis?.analysis_notes || 'The AI could not identify specific disease symptoms from the photo. Make sure the affected area is clearly visible.',
                 disease: disease.toObject()
             }));
-        } else {
-            // Normal scoring — match symptoms against diseases
-            allDiseases.forEach(disease => {
-                let matchCount = 0;
-                let isAiExactMatch = false;
-
-                // Check if Gemini exactly matched this disease name
-                if (aiAnalysis && aiAnalysis.suspected_disease) {
-                    const suspectedLower = aiAnalysis.suspected_disease.toLowerCase();
-                    const diseaseLower = disease.name.toLowerCase();
-                    if (diseaseLower.includes(suspectedLower) || suspectedLower.includes(diseaseLower)) {
-                        isAiExactMatch = true;
-                        matchCount += 5; // Heavy weight for AI exact matches
-                    }
-                }
-
-                symptomList.forEach(querySymptom => {
-                    const hasMatch = disease.symptoms.some(diseaseSymptom =>
-                        diseaseSymptom.toLowerCase().includes(querySymptom) ||
-                        querySymptom.includes(diseaseSymptom.toLowerCase())
-                    );
-                    if (hasMatch) matchCount++;
-                });
-
-                if (matchCount > 0) {
-                    results.push({
-                        diseaseId: disease._id,
-                        diseaseName: disease.name,
-                        matchScore: Math.min(1, matchCount / Math.max(symptomList.length, 1)),
-                        isAiMatch: isAiExactMatch,
-                        disease: disease.toObject()
-                    });
-                }
-            });
-
-            // Sort by match score
-            results.sort((a, b) => b.matchScore - a.matchScore);
         }
 
         // Save diagnosis log
