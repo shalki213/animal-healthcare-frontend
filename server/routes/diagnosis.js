@@ -191,15 +191,16 @@ If the image is too unclear or doesn't show an animal, still try your best but s
         // Sort by match score
         results.sort((a, b) => b.matchScore - a.matchScore);
 
-        if (isPhotoOnlyRequest && results.length === 0) {
-            // Photo-only request but AI failed to find ANY matched symptoms — return top diseases as suggestions
+        if (results.length === 0) {
+            // No matches found by either AI or manual symptoms — return top diseases as suggestions
+            const isAiImageFailure = req.file ? true : false;
             results = allDiseases.slice(0, 5).map(disease => ({
                 diseaseId: disease._id,
                 diseaseName: disease.name,
                 matchScore: 0.3,
                 isAiMatch: false,
                 isSuggestion: true,
-                aiAnalysis: aiAnalysis?.analysis_notes || 'The AI could not identify specific disease symptoms from the photo. Make sure the affected area is clearly visible.',
+                aiAnalysis: isAiImageFailure ? (aiAnalysis?.analysis_notes || 'The AI could not identify specific disease symptoms from the photo. Make sure the affected area is clearly visible.') : undefined,
                 disease: disease.toObject()
             }));
         }
