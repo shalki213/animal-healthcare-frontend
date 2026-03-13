@@ -3,7 +3,15 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
-require('dotenv').config();
+require('dotenv').config({ path: path.join(__dirname, '.env') });
+
+// Startup Environment Checks
+if (!process.env.GEMINI_API_KEY) {
+    console.warn('⚠️  WARNING: GEMINI_API_KEY is missing. AI Photo Diagnosis will not work.');
+}
+if (!process.env.JWT_SECRET) {
+    console.warn('⚠️  WARNING: JWT_SECRET is missing. User Signup/Login will fail with secretOrPrivateKey errors.');
+}
 
 const { errorHandler } = require('./middleware/errorHandler');
 

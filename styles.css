@@ -248,9 +248,16 @@ nav a:hover {
     text-decoration: none;
 }
 
+/* Shader Canvas explicit layering */
+#shaderBackground {
+    z-index: -9999 !important;
+}
+
 /* Main Content */
 main {
     padding: 40px 0;
+    position: relative;
+    z-index: 1;
 }
 
 section {
@@ -271,7 +278,7 @@ section h2 {
 }
 
 section p {
-    color: #8b949e;
+    color: #c9d1d9;
     margin-bottom: 20px;
 }
 
@@ -348,7 +355,7 @@ section p {
 }
 
 .photo-upload-section p {
-    color: #666;
+    color: #c9d1d9;
     font-size: 14px;
     margin-bottom: 15px;
 }
@@ -375,12 +382,12 @@ section p {
 
 .upload-area p {
     margin: 10px 0;
-    color: #555;
+    color: #c9d1d9;
 }
 
 .upload-hint {
     font-size: 12px;
-    color: #999;
+    color: #a0aec0;
 }
 
 .photo-preview {
@@ -451,7 +458,7 @@ section p {
 .disease-info ul,
 .disease-info ol {
     margin-left: 20px;
-    color: #555;
+    color: #c9d1d9;
 }
 
 .disease-info li {
@@ -465,6 +472,7 @@ section p {
     padding: 15px;
     border-radius: var(--border-radius);
     margin: 15px 0;
+    color: #333;
 }
 
 .treatment-box h5 {
@@ -478,6 +486,7 @@ section p {
     border-radius: var(--border-radius);
     margin: 10px 0;
     border-left: 4px solid var(--secondary-color);
+    color: #333;
 }
 
 .medicine-item {
@@ -563,7 +572,7 @@ section p {
 
 .disease-card p {
     font-size: 14px;
-    color: #666;
+    color: #a0aec0;
     margin: 5px 0;
 }
 
@@ -663,7 +672,7 @@ footer {
 }
 
 .feature-card p {
-    color: #8b949e;
+    color: #c9d1d9;
     margin-bottom: 20px;
 }
 
@@ -1167,7 +1176,7 @@ footer {
 }
 
 .medicine-dosage {
-    color: #8b949e;
+    color: #c9d1d9;
 }
 
 /* Confidence / warning boxes dark mode */
@@ -1200,7 +1209,7 @@ footer {
 }
 
 .disease-card p {
-    color: #8b949e;
+    color: #c9d1d9;
 }
 
 /* Disease info text */
@@ -1220,7 +1229,7 @@ footer {
 
 /* Upload area text */
 .upload-area p {
-    color: #8b949e;
+    color: #c9d1d9;
 }
 
 .upload-area svg {
@@ -1233,7 +1242,7 @@ footer {
 }
 
 .photo-upload-section p {
-    color: #8b949e;
+    color: #c9d1d9;
 }
 
 /* Input placeholders */

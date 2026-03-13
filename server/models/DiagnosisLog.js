@@ -4,7 +4,7 @@ const diagnosisResultSchema = new mongoose.Schema({
     diseaseId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Disease',
-        required: true
+        required: false // Made optional so AI-generated diseases without a DB footprint can be saved
     },
     diseaseName: { type: String },
     matchScore: { type: Number }

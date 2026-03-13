@@ -13,6 +13,27 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/animal
 const diseaseDatabase = {
     cattle: [
         {
+            name: "Lumpy Skin Disease",
+            symptoms: ["lumps", "nodules", "skin lesions", "fever", "swollen lymph nodes", "emaciation", "reduced milk", "poor coat"],
+            confidence: 0.95,
+            treatment: [
+                {
+                    name: "Supportive Care (Viral)",
+                    medicines: [
+                        { name: "Antibiotics (for secondary infections)", dosage: "Penicillin or Oxytetracycline as prescribed" },
+                        { name: "Anti-inflammatory", dosage: "NSAIDs to reduce fever and pain" }
+                    ]
+                }
+            ],
+            homeRemedies: [
+                { remedy: "Wound care", instructions: "Apply iodine or fly repellent to ruptured nodules to prevent secondary infection" },
+                { remedy: "Nutritional support", instructions: "Provide highly palatable soft feed and fresh water since eating may be painful" },
+                { remedy: "Isolation", instructions: "Isolate the infected animal immediately to prevent spread through insects" }
+            ],
+            description: "A highly infectious viral disease of cattle characterized by fever and nodules on the skin, mucous membranes, and internal organs.",
+            prevention: "Vaccination and strict vector (insect/tick) control"
+        },
+        {
             name: "Foot and Mouth Disease (FMD)",
             symptoms: ["blister", "mouth", "hooves", "fever", "lameness", "excessive salivation", "weight loss"],
             confidence: 0.95,

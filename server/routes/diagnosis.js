@@ -34,6 +34,14 @@ router.post('/', auth, upload.single('photo'), async (req, res, next) => {
         let aiMatched = false;
         let aiError = null;
 
+        // Query the database FIRST to get the EXACT diseases available
+        const filter = {};
+        if (animalType) {
+            filter.animalType = animalType.toLowerCase();
+        }
+        const allDiseases = await Disease.find(filter);
+        const dynamicDiseaseNames = allDiseases.map(d => d.name).join(', ') || 'Common livestock diseases';
+
         // If a photo was uploaded, use Gemini Vision to analyze it
         if (req.file && ai) {
             try {
@@ -43,35 +51,32 @@ router.post('/', auth, upload.single('photo'), async (req, res, next) => {
 
                 const prompt = `You are an expert veterinarian specializing in livestock diseases in East Africa.
                 
-Analyze this image of a ${animalType || 'farm animal'} carefully.
+Analyze this image of a ${animalType || 'farm animal'} carefully. Look for common disease signs.
 
-Look for ANY of these common livestock disease signs:
-- Skin lesions, blisters, sores, ulcers
-- Swelling (joints, legs, jaw, lymph nodes)
-- Discharge (nasal, eye, mouth)
-- Abnormal posture, lameness, lethargy
-- Discoloration (skin, mucous membranes)
-- Diarrhea signs, bloating
-- Respiratory distress
-- Hair/feather loss, poor coat condition
-- Visible parasites
-- Excessive salivation, drooling, or foaming at the mouth (FMD)
-- Mouth/hoof lesions (FMD)
-- Lumps, nodules (Lumpy Skin Disease)
+Based on what you see, identify the most likely disease. Generate a complete, detailed disease profile from your own expert knowledge base. Do NOT restrict yourself to any specific list.
 
-Based on what you see, identify the most likely disease from this list:
-Foot and Mouth Disease, East Coast Fever, Blackleg, Lumpy Skin Disease, Mastitis, Bloat, Pneumonia, Newcastle Disease, Coccidiosis, Mange, Anthrax, Brucellosis, Anaplasmosis, Foot Rot, Trypanosomiasis
-
-Return ONLY a valid JSON object (no markdown formatting):
+Return ONLY a valid JSON object (no markdown formatting) matching exactly this structure:
 {
-    "visible_signs": ["list", "of", "what", "you", "see"],
-    "symptoms": ["fever", "lameness", "swelling"],
-    "suspected_disease": "Disease Name",
-    "confidence": 0.7,
-    "analysis_notes": "Brief explanation of why you suspect this disease"
+    "name": "Exact Disease Name",
+    "confidence": 0.85,
+    "analysis_notes": "Brief explanation of why you suspect this disease based on the image",
+    "symptoms": ["fever", "lameness", "visible lumps"],
+    "description": "Short description of the disease.",
+    "treatment": [
+        {
+            "name": "Antibiotics / Medicine Category",
+            "medicines": [
+                { "name": "Medicine Name", "dosage": "Dosage instructions" }
+            ]
+        }
+    ],
+    "homeRemedies": [
+        { "remedy": "Remedy Name", "instructions": "How to apply or use it" }
+    ],
+    "prevention": "How to prevent this disease"
 }
 
-If the image is too unclear or doesn't show an animal, still try your best but set confidence low.`;
+If the image is too unclear or does not show an animal, still try your best to pick a disease but set confidence low.`;
 
                 const response = await ai.models.generateContent({
                     model: 'gemini-2.5-flash',
@@ -96,14 +101,7 @@ If the image is too unclear or doesn't show an animal, still try your best but s
                 }
                 aiAnalysis = JSON.parse(responseText);
 
-                // Merge AI symptoms with user-provided symptoms
-                const mergedSymptoms = new Set([
-                    ...(symptoms ? symptoms.toLowerCase().split(',').map(s => s.trim()).filter(s => s && s !== 'photo analysis visual inspection') : []),
-                    ...(aiAnalysis.symptoms ? aiAnalysis.symptoms.map(s => s.toLowerCase().trim()) : []),
-                    ...(aiAnalysis.visible_signs ? aiAnalysis.visible_signs.map(s => s.toLowerCase().trim()) : [])
-                ]);
-
-                symptoms = Array.from(mergedSymptoms).filter(Boolean).join(', ');
+                // AI has generated the full profile
                 aiMatched = true;
 
             } catch (err) {
@@ -130,28 +128,43 @@ If the image is too unclear or doesn't show an animal, still try your best but s
             ? symptoms.toLowerCase().split(',').map(s => s.trim()).filter(Boolean)
             : [];
 
-        // Build query
-        const filter = {};
-        if (animalType) {
-            filter.animalType = animalType.toLowerCase();
+        let results = [];
+        let aiGeneratedDiseaseAdded = false;
+
+        // 1. Inject the AI-generated complete disease profile as the ultimate top result
+        if (aiAnalysis && aiAnalysis.name && aiAnalysis.treatment) {
+            results.push({
+                diseaseId: null, // AI generated, no DB ID
+                diseaseName: aiAnalysis.name,
+                matchScore: Math.min(1, Math.max(0.7, (aiAnalysis.confidence || 0.85))),
+                isAiMatch: true,
+                aiAnalysis: aiAnalysis.analysis_notes,
+                disease: {
+                    name: aiAnalysis.name,
+                    symptoms: aiAnalysis.symptoms || [],
+                    description: aiAnalysis.description || '',
+                    treatment: aiAnalysis.treatment || [],
+                    homeRemedies: aiAnalysis.homeRemedies || [],
+                    prevention: aiAnalysis.prevention || ''
+                }
+            });
+            aiGeneratedDiseaseAdded = true;
         }
 
-        const allDiseases = await Disease.find(filter);
-
-        let results = [];
-
-        // Normal scoring — match symptoms against diseases
+        // 2. Normal scoring — match symptoms against local database diseases for alternative suggestions
         allDiseases.forEach(disease => {
             let matchCount = 0;
             let isAiExactMatch = false;
 
             // Check if Gemini exactly matched this disease name
-            if (aiAnalysis && aiAnalysis.suspected_disease) {
-                const suspectedLower = aiAnalysis.suspected_disease.toLowerCase();
+            if (aiAnalysis && (aiAnalysis.suspected_disease || aiAnalysis.name)) {
+                const suspectedLower = (aiAnalysis.suspected_disease || aiAnalysis.name).toLowerCase();
                 const diseaseLower = disease.name.toLowerCase();
-                // Avoid matching generic healthy words with diseases
                 if (suspectedLower.length > 3 && suspectedLower !== 'none' && suspectedLower !== 'healthy' && suspectedLower !== 'unknown') {
                     if (diseaseLower.includes(suspectedLower) || suspectedLower.includes(diseaseLower)) {
+                        // If the AI generated its own custom profile, explicitly skip the DB version to avoid duplicates
+                        if (aiGeneratedDiseaseAdded) return;
+
                         isAiExactMatch = true;
                         matchCount += 5; // Heavy weight for AI exact matches
                     }
@@ -166,8 +179,7 @@ If the image is too unclear or doesn't show an animal, still try your best but s
                 if (hasMatch) matchCount++;
             });
 
-            // If Gemini is highly confident it's this disease but lists no symptoms, force a match
-            if (isAiExactMatch && matchCount === 5) {
+            if (isAiExactMatch && matchCount >= 5) {
                 results.push({
                     diseaseId: disease._id,
                     diseaseName: disease.name,
@@ -181,7 +193,7 @@ If the image is too unclear or doesn't show an animal, still try your best but s
                     diseaseId: disease._id,
                     diseaseName: disease.name,
                     matchScore: Math.min(1, matchCount / Math.max(symptomList.length, 1)),
-                    isAiMatch: isAiExactMatch,
+                    isAiMatch: false,
                     aiAnalysis: aiAnalysis?.analysis_notes,
                     disease: disease.toObject()
                 });
